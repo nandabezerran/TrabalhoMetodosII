@@ -150,7 +150,7 @@ double** LUDecompositionForInverse(double **Matrix){
     for(int c = 0; c < Columns; c++) {
         for (int i = Lines - 1; i >= 0; --i) {
             InverseMatrix[i][c] = Y[i][c];
-            for(int k = 0; k < i; k++) {
+            for(int k = i + 1; k < Lines; k++) {
                 InverseMatrix[i][c] -= U[i][k] * InverseMatrix[k][c];
             }
             InverseMatrix[i][c] /= U[i][i];

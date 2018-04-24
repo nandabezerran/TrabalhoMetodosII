@@ -67,13 +67,18 @@ double* MatrixVectorMultiplication(double **Matrix, const double *Vector){
 /// \return o vetor normalizado
 double* NormalizingVector(double *Vector) {
     double *NormalizedVector = (double*) malloc(VectorSize * sizeof(double));
+    double     Normalization = EuclidianNormalization(Vector);
     for (int i = 0; i < VectorSize; ++i) {
-        NormalizedVector[i] = Vector[i]/EuclidianNormalization(Vector);
+        NormalizedVector[i] = Vector[i]/Normalization;
     }
     return NormalizedVector;
 }
 
-double VectorTransposeMultiplication(const double *Vector1, const double *Vector2) {
+/// Multiplicação de vetores
+/// \param Vector1
+/// \param Vector2
+/// \return o resultado da multiplicacao
+double VectorMultiplication(const double *Vector1, const double *Vector2) {
     double Result = 0;
     for (int i = 0; i < VectorSize ; ++i) {
         Result += Vector1[i] * Vector2[i];
@@ -95,11 +100,12 @@ double RegularPow(double **Matrix, double *InitialVector, double Tolerance){
 
     do{
         q = NormalizingVector(x);
-        x = MatrixVectorMultiplication(Matrix, x);
-        Lambda = VectorTransposeMultiplication(q,x);
+        x = MatrixVectorMultiplication(Matrix, q);
+        Lambda = VectorMultiplication(q, x);
         Error = fabs((Lambda - PreviousLambda)/Lambda);
+        PreviousLambda = Lambda;
     }
-    while (Error > Tolerance );
+    while (Error > Tolerance);
     return Lambda;
 }
 

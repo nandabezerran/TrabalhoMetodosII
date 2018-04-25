@@ -3,11 +3,21 @@
 #include <stdlib.h>
 #include <math.h>
 
+struct AutoVectorAutoValue{
+    double       Lambda;
+    double *Autovector;
+};
+
 //Foi utilizada a normalização euclidiana
 
 int Columns    = 2;
 int Lines      = 2;
 int VectorSize = 2;
+
+double* VectorAlocation(){
+    double *Vector = (double*) malloc(VectorSize * sizeof(double));
+    return Vector;
+}
 
 /// Função para alocação da Matriz
 /// \param Lines = quantidade de linhas
@@ -18,7 +28,6 @@ double** MatrixAlocation(int Lines, int Columns){
 
     for (int i = 0; i < Lines; i++){
         Matrix[i] = (double*) malloc(Columns * sizeof(double));
-
     }
     return Matrix;
 }
@@ -90,8 +99,10 @@ double VectorMultiplication(const double *Vector1, const double *Vector2) {
 /// \param Matrix        = Matriz Original
 /// \param InitialVector = Vetor chute
 /// \param Tolerance     = Tolerancia para o erro
-/// \return o maior autovalor
-double RegularPow(double **Matrix, double *InitialVector, double Tolerance){
+/// \return struct com o maior autovalor e o autovetor correspondente
+struct AutoVectorAutoValue RegularPow(double **Matrix, double *InitialVector, double Tolerance){
+    struct AutoVectorAutoValue Answer;
+    Answer.Autovector = VectorAlocation();
     double *q = NormalizingVector(InitialVector);
     double Error;
     double Lambda;
@@ -106,7 +117,9 @@ double RegularPow(double **Matrix, double *InitialVector, double Tolerance){
         PreviousLambda = Lambda;
     }
     while (Error > Tolerance);
-    return Lambda;
+    Answer.Lambda = Lambda;
+    Answer.Autovector = x;
+    return Answer;
 }
 
 /// Função que faz a decomposição LU e encontra a inversa da matriz
@@ -181,24 +194,41 @@ double** LUDecompositionForInverse(double **Matrix){
     return InverseMatrix;
 }
 
-double InversePow(double **Matrix, double *InitialVector, double Tolerance){
+/// Funçao que calcula o maior autovalor pelo o metodo da potencia inversa
+/// \param Matrix        = Matriz original
+/// \param InitialVector = Vetor chute
+/// \param Tolerance     = Tolerancia para o erro
+/// \return struct com o maior autovalor e o autovetor correspondente
+struct AutoVectorAutoValue InversePow(double **Matrix, double *InitialVector, double Tolerance){
+    struct AutoVectorAutoValue Answer;
+    struct AutoVectorAutoValue RegularPowAnswer;
     double **InverseMatrix = LUDecompositionForInverse(Matrix);
-    return RegularPow(InverseMatrix, InitialVector, Tolerance);
+    RegularPowAnswer = RegularPow(InverseMatrix, InitialVector, Tolerance);
+    Answer.Lambda = 1/RegularPowAnswer.Lambda;
+    Answer.Autovector = RegularPowAnswer.Autovector;
+    return Answer;
 }
 
 
 int main() {
+    struct AutoVectorAutoValue AnswerRegularPow;
+    struct AutoVectorAutoValue AnswerInversePow;
+
     double       **Matrix = MatrixAlocation(Lines, Columns);
-    double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
     double      Tolerance = 0.001;
+    double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
+
     InitialVector[0] = 1;
     InitialVector[1] = 1;
     Matrix[0][0] = 1;
     Matrix[0][1] = 2;
     Matrix[1][0] = 3;
     Matrix[1][1] = 0;
-    double AutoValue = RegularPow(Matrix, InitialVector, Tolerance);
-    printf("%f", AutoValue);
+
+    AnswerRegularPow = RegularPow(Matrix, InitialVector, Tolerance);
+    printf("%f\n", AnswerRegularPow.Lambda);
+    AnswerInversePow = InversePow(Matrix, InitialVector, Tolerance);
+    printf("%f\n", AnswerInversePow.Lambda);
 
     system("pause");
     return 0;

@@ -4,15 +4,15 @@
 #include <math.h>
 
 struct AutoVectorAutoValue{
-    double       Lambda;
+    double      Lambda;
     double *Autovector;
 };
 
 //Foi utilizada a normalização euclidiana
 
-int Columns    = 2;
-int Lines      = 2;
-int VectorSize = 2;
+int Columns    = 3;
+int Lines      = 3;
+int VectorSize = 3;
 
 double* VectorAlocation(){
     double *Vector = (double*) malloc(VectorSize * sizeof(double));
@@ -203,27 +203,95 @@ struct AutoVectorAutoValue InversePow(double **Matrix, double *InitialVector, do
     struct AutoVectorAutoValue Answer;
     struct AutoVectorAutoValue RegularPowAnswer;
     double **InverseMatrix = LUDecompositionForInverse(Matrix);
-    RegularPowAnswer = RegularPow(InverseMatrix, InitialVector, Tolerance);
-    Answer.Lambda = 1/RegularPowAnswer.Lambda;
+
+    RegularPowAnswer  = RegularPow(InverseMatrix, InitialVector, Tolerance);
+    Answer.Lambda     = 1/RegularPowAnswer.Lambda;
     Answer.Autovector = RegularPowAnswer.Autovector;
     return Answer;
 }
 
+/// Função para calcular a matriz resultante da multiplicação de uma matriz por um valor escalar
+/// \param Matrix
+/// \param Displacement
+/// \return Matriz resultado da multiplicação
+double** MatrixValueMultiplication(double **Matrix, double Displacement){
+    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            ResultingMatrix[l][m] = Matrix[l][m] * Displacement;
+
+        }
+    }
+    return ResultingMatrix;
+}
+
+/// Função que calcula a matrix resultante da subtração de duas matrizes
+/// \param Matrix1
+/// \param Matrix2
+/// \return Matriz resultado da subtração
+double** MatrixSubtraction(double **Matrix1, double **Matrix2){
+    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            ResultingMatrix[l][m] = Matrix1[l][m] - Matrix2[l][m];
+
+        }
+    }
+    return ResultingMatrix;
+}
+
+/// Metodo da Potencia com deslocamento
+/// \param Matrix
+/// \param InitialVector
+/// \param Tolerance
+/// \param Displacement
+/// \return uma struct com o autovalor com o deslocamento e o autovetor
+struct AutoVectorAutoValue DisplacementPow(double **Matrix, double *InitialVector, double Tolerance,
+                         double Displacement){
+    double **IdentityMatrix = MatrixAlocation(Lines, Columns);
+    struct AutoVectorAutoValue Answer;
+    struct AutoVectorAutoValue InversePowAnswer;
+    double **DisplacementMatrix;
+    double **DisplacementIdentityMultiplication;
+
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            if (l == m){
+                IdentityMatrix[l][m] = 1;
+            }
+            else{
+                IdentityMatrix[l][m] = 0;
+            }
+        }
+    }
+    DisplacementIdentityMultiplication = MatrixValueMultiplication(IdentityMatrix, Displacement);
+    DisplacementMatrix                 = MatrixSubtraction(Matrix, DisplacementIdentityMultiplication);
+    InversePowAnswer                   = RegularPow(DisplacementMatrix, InitialVector, Tolerance);
+    Answer.Lambda                      = Displacement + InversePowAnswer.Lambda;
+    Answer.Autovector                  = InversePowAnswer.Autovector;
+    return Answer;
+}
 
 int main() {
     struct AutoVectorAutoValue AnswerRegularPow;
     struct AutoVectorAutoValue AnswerInversePow;
 
     double       **Matrix = MatrixAlocation(Lines, Columns);
-    double      Tolerance = 0.001;
+    double      Tolerance = 0.0000001;
     double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
 
     InitialVector[0] = 1;
     InitialVector[1] = 1;
-    Matrix[0][0] = 1;
-    Matrix[0][1] = 2;
-    Matrix[1][0] = 3;
-    Matrix[1][1] = 0;
+    InitialVector[2] = 1;
+    Matrix[0][0] = 4;
+    Matrix[0][1] = -1;
+    Matrix[0][2] = 1;
+    Matrix[1][0] = -1;
+    Matrix[1][1] = 3;
+    Matrix[1][2] = -2;
+    Matrix[2][0] = 1;
+    Matrix[2][1] = -2;
+    Matrix[2][2] = 3;
 
     AnswerRegularPow = RegularPow(Matrix, InitialVector, Tolerance);
     printf("%f\n", AnswerRegularPow.Lambda);

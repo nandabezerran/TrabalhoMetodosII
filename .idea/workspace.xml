@@ -13,9 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="930c99af-64ec-49c5-86d0-be165279f692" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" />
       <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -42,8 +39,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3315">
-              <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="476">
+              <caret line="279" column="37" lean-forward="false" selection-start-line="279" selection-start-column="37" selection-end-line="279" selection-end-column="37" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -150,7 +147,8 @@
       <workItem from="1524511816983" duration="5485000" />
       <workItem from="1524519446720" duration="6153000" />
       <workItem from="1524599904406" duration="282000" />
-      <workItem from="1524604481441" duration="7103000" />
+      <workItem from="1524604481441" duration="7393000" />
+      <workItem from="1524698333124" duration="2954000" />
     </task>
     <task id="LOCAL-00001" summary="Decomposicao LU OK Matriz Inversa OK">
       <created>1524600045215</created>
@@ -173,11 +171,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524609644707</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RegularPow OK Codigo comentado OK InversePow OK Retornar Autovalor e&#10;Autovetor OK">
+      <created>1524622360576</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1524622360576</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27210000" />
+    <option name="totallyTimeSpent" value="30454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -214,7 +219,8 @@
     <MESSAGE value="RegularPow ERRO Codigo comentado OK" />
     <MESSAGE value="RegularPow OK Codigo comentado OK" />
     <MESSAGE value="RegularPow OK Codigo comentado OK InversePow OK Retornar Autovalor e&#10;Autovetor OK" />
-    <option name="LAST_COMMIT_MESSAGE" value="RegularPow OK Codigo comentado OK InversePow OK Retornar Autovalor e&#10;Autovetor OK" />
+    <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -267,6 +273,24 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3315">
+          <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -349,8 +373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3315">
-          <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="476">
+          <caret line="279" column="37" lean-forward="false" selection-start-line="279" selection-start-column="37" selection-end-line="279" selection-end-column="37" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
           </folding>

@@ -1,3 +1,0 @@
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01/cmake-build-debug/CMakeFiles/Trabalho_02.dir
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01/cmake-build-debug/CMakeFiles/rebuild_cache.dir

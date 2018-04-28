@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01/main.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+

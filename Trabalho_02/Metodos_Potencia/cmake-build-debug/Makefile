@@ -47,10 +47,10 @@ RM = "C:\Users\fbeze\AppData\Roaming\JetBrains\CLion 2017.3.4\bin\cmake\bin\cmak
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\Projetos_Metodos_II\Trabalho_02\Questao_01
+CMAKE_SOURCE_DIR = C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\TrabalhoMetodosII\Trabalho_02\Metodos_Potencia
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\Projetos_Metodos_II\Trabalho_02\Questao_01\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\TrabalhoMetodosII\Trabalho_02\Metodos_Potencia\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\Projetos_Metodos_II\Trabalho_02\Questao_01\cmake-build-debug\CMakeFiles C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\Projetos_Metodos_II\Trabalho_02\Questao_01\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\TrabalhoMetodosII\Trabalho_02\Metodos_Potencia\cmake-build-debug\CMakeFiles C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\TrabalhoMetodosII\Trabalho_02\Metodos_Potencia\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\Projetos_Metodos_II\Trabalho_02\Questao_01\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fbeze\Desktop\Faculdade\Metodos_Numericos_II\TrabalhoMetodosII\Trabalho_02\Metodos_Potencia\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target

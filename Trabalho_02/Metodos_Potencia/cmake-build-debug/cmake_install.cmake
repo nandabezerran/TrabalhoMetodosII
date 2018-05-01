@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01
+# Install script for directory: C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_02/Metodos_Potencia
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/Projetos_Metodos_II/Trabalho_02/Questao_01/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_02/Metodos_Potencia/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

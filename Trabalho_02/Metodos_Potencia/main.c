@@ -95,6 +95,129 @@ double VectorMultiplication(const double *Vector1, const double *Vector2) {
     return Result;
 }
 
+double** VectorTranposeVectorMultiplication(const double *Vector1, const double *Vector2){
+    double **ResultingMatrix  = MatrixAlocation(Lines, Columns);
+    for (int i = 0; i < Columns; ++i) {
+        for (int j = 0; j < Lines ; ++j) {
+               ResultingMatrix[j][i] = Vector1[j] * Vector2[i];
+        }
+    }
+    return ResultingMatrix;
+}
+
+double* VectorSubtraction(const double *Vector1, const double *Vector2){
+    double *ResultingVector = VectorAlocation();
+    for (int i = 0; i < Lines; ++i) {
+        ResultingVector[i] = Vector1[i] - Vector2[i];
+    }
+    return ResultingVector;
+}
+
+/// Transforma uma matriz numa matriz identidade
+/// \param Matrix
+void MakeIdentityMatrix(double **Matrix) {
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            if (l == m){
+                Matrix[l][m] = 1;
+            }
+            else{
+                Matrix[l][m] = 0;
+            }
+        }
+    }
+}
+
+/// Função para calcular a matriz resultante da multiplicação de uma matriz por um valor escalar
+/// \param Matrix
+/// \param Displacement
+/// \return Matriz resultado da multiplicação
+double** MatrixValueMultiplication(double **Matrix, double Displacement){
+    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            ResultingMatrix[l][m] = Matrix[l][m] * Displacement;
+
+        }
+    }
+    return ResultingMatrix;
+}
+
+/// Função para multiplicar matrizes
+/// \param Matrix1
+/// \param Matrix2
+/// \return Matriz resultado da multiplicação
+double** MatrixMultiplication(double **Matrix1, double **Matrix2){
+    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
+    for (int i = 0; i < Lines ; ++i) {
+        for (int j = 0; j < Columns ; ++j) {
+            ResultingMatrix[i][j] = 0;
+            for (int k = 0; k < Columns; ++k) {
+                ResultingMatrix[i][j] += Matrix1[i][k] * Matrix2[k][j];
+            }
+        }
+    }
+    return ResultingMatrix;
+}
+
+/// Função que calcula a matrix resultante da subtração de duas matrizes
+/// \param Matrix1
+/// \param Matrix2
+/// \return Matriz resultado da subtração
+double** MatrixSubtraction(double **Matrix1, double **Matrix2){
+    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
+    for (int l = 0; l < Lines ; ++l) {
+        for (int m = 0; m < Columns; ++m) {
+            ResultingMatrix[l][m] = Matrix1[l][m] - Matrix2[l][m];
+
+        }
+    }
+    return ResultingMatrix;
+}
+
+double** ConstructHouseHolder(double **Matrix, int Index){
+    double **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
+    double            *VectorP = VectorAlocation();
+    double        *VectorPLine = VectorAlocation();
+
+    double               *VectorN;
+    double     *VectorNNormalized;
+    double   VectorPNormalization;
+
+    for (int l = 0; l < Lines ; ++l) {
+        VectorP[l]     = 0;
+        VectorPLine[l] = 0;
+    }
+
+    MakeIdentityMatrix(HouseHolderMatrix);
+
+    for (int i = Index; i < Lines ; ++i) {
+        VectorP[i] = Matrix[i][Index];
+    }
+
+    VectorPNormalization = EuclidianNormalization(VectorP);
+    VectorPLine[Index]   = VectorPNormalization;
+    VectorN              = VectorSubtraction(VectorP, VectorPLine);
+    VectorNNormalized    = NormalizingVector(VectorN);
+
+    HouseHolderMatrix = MatrixSubtraction(HouseHolderMatrix, MatrixValueMultiplication(VectorTranposeVectorMultiplication(VectorNNormalized,
+                                                                                    VectorNNormalized),2));
+    return HouseHolderMatrix;
+}
+
+double **HouseHolderMethod(double **Matrix){
+    double    **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
+    double **HouseHolderMatrixAux;
+
+    MakeIdentityMatrix(HouseHolderMatrix);
+    for (int i = 0; i < Columns-2 ; ++i) {
+        HouseHolderMatrixAux = ConstructHouseHolder(Matrix, i);
+        Matrix = MatrixMultiplication(HouseHolderMatrixAux, MatrixMultiplication(Matrix, HouseHolderMatrixAux));
+        HouseHolderMatrix = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
+    }
+    return Matrix;
+}
+
 /// Calcula o maior autovalor pelo metodo da potencia regular
 /// \param Matrix        = Matriz Original
 /// \param InitialVector = Vetor chute
@@ -210,36 +333,6 @@ struct AutoVectorAutoValue InversePow(double **Matrix, double *InitialVector, do
     return Answer;
 }
 
-/// Função para calcular a matriz resultante da multiplicação de uma matriz por um valor escalar
-/// \param Matrix
-/// \param Displacement
-/// \return Matriz resultado da multiplicação
-double** MatrixValueMultiplication(double **Matrix, double Displacement){
-    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
-            ResultingMatrix[l][m] = Matrix[l][m] * Displacement;
-
-        }
-    }
-    return ResultingMatrix;
-}
-
-/// Função que calcula a matrix resultante da subtração de duas matrizes
-/// \param Matrix1
-/// \param Matrix2
-/// \return Matriz resultado da subtração
-double** MatrixSubtraction(double **Matrix1, double **Matrix2){
-    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
-            ResultingMatrix[l][m] = Matrix1[l][m] - Matrix2[l][m];
-
-        }
-    }
-    return ResultingMatrix;
-}
-
 /// Metodo da Potencia com deslocamento
 /// \param Matrix
 /// \param InitialVector
@@ -277,18 +370,22 @@ int main() {
     struct AutoVectorAutoValue AnswerInversePow;
 
     double       **Matrix = MatrixAlocation(Lines, Columns);
+    double      **Matrix1 = MatrixAlocation(Lines, Columns);
     double      Tolerance = 0.0000001;
     double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
 
     InitialVector[0] = 1;
     InitialVector[1] = 1;
     InitialVector[2] = 1;
+
     Matrix[0][0] = 4;
     Matrix[0][1] = -1;
     Matrix[0][2] = 1;
+
     Matrix[1][0] = -1;
     Matrix[1][1] = 3;
     Matrix[1][2] = -2;
+
     Matrix[2][0] = 1;
     Matrix[2][1] = -2;
     Matrix[2][2] = 3;
@@ -297,7 +394,7 @@ int main() {
     printf("%f\n", AnswerRegularPow.Lambda);
     AnswerInversePow = InversePow(Matrix, InitialVector, Tolerance);
     printf("%f\n", AnswerInversePow.Lambda);
-
+    PrintMatrix(HouseHolderMethod(Matrix));
     system("pause");
     return 0;
 }

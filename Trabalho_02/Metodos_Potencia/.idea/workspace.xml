@@ -13,9 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="930c99af-64ec-49c5-86d0-be165279f692" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" />
       <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -42,8 +39,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
+            <state relative-caret-position="-155">
+              <caret line="393" column="60" lean-forward="false" selection-start-line="393" selection-start-column="60" selection-end-line="393" selection-end-column="60" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -154,7 +151,7 @@
       <workItem from="1524698333124" duration="2954000" />
       <workItem from="1525172117272" duration="4408000" />
       <workItem from="1525177974825" duration="3549000" />
-      <workItem from="1525305557928" duration="1249000" />
+      <workItem from="1525305557928" duration="2798000" />
     </task>
     <task id="LOCAL-00001" summary="Decomposicao LU OK Matriz Inversa OK">
       <created>1524600045215</created>
@@ -191,11 +188,25 @@
       <option name="project" value="LOCAL" />
       <updated>1525179712540</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder CORRETO">
+      <created>1525307237971</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1525307237971</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;                   HouseHolder CORRETO">
+      <created>1525307299229</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1525307299229</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39660000" />
+    <option name="totallyTimeSpent" value="41209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -235,7 +246,9 @@
     <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO" />
     <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder ERRO" />
     <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder CORRETO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder CORRETO" />
+    <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;                   HouseHolder CORRETO" />
+    <MESSAGE value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder CORRETO e Retornando STRUCT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Erro Metodo Potencia (Matrix 2x2) Potencia deslocamento NAO TESTADO &#10;HouseHolder CORRETO e Retornando STRUCT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -442,8 +455,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="217" column="63" lean-forward="true" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
+        <state relative-caret-position="-155">
+          <caret line="393" column="60" lean-forward="false" selection-start-line="393" selection-start-column="60" selection-end-line="393" selection-end-column="60" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
           </folding>

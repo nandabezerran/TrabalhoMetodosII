@@ -3,9 +3,14 @@
 #include <stdlib.h>
 #include <math.h>
 
-struct AutoVectorAutoValue{
-    double      Lambda;
-    double *Autovector;
+struct EigenValueVector{
+    double    EigenValue;
+    double *Eigenvector;
+};
+
+struct HouseHolderAnswer{
+    double **TridiagonalMatrix;
+    double **HouseHolderMatrix;
 };
 
 //Foi utilizada a normalização euclidiana
@@ -95,6 +100,10 @@ double VectorMultiplication(const double *Vector1, const double *Vector2) {
     return Result;
 }
 
+/// Multiplicacao de um vetor transposto por um vetor normal
+/// \param Vector1
+/// \param Vector2
+/// \return Matriz resultante
 double** VectorTranposeVectorMultiplication(const double *Vector1, const double *Vector2){
     double **ResultingMatrix  = MatrixAlocation(Lines, Columns);
     for (int i = 0; i < Columns; ++i) {
@@ -105,6 +114,10 @@ double** VectorTranposeVectorMultiplication(const double *Vector1, const double 
     return ResultingMatrix;
 }
 
+/// Subtração entre dois vetores
+/// \param Vector1
+/// \param Vector2
+/// \return Vetor resultante
 double* VectorSubtraction(const double *Vector1, const double *Vector2){
     double *ResultingVector = VectorAlocation();
     for (int i = 0; i < Lines; ++i) {
@@ -209,9 +222,10 @@ double** ConstructHouseHolder(double **Matrix, int Index){
     return HouseHolderMatrix;
 }
 
-double **HouseHolderMethod(double **Matrix){
+struct HouseHolderAnswer HouseHolderMethod(double **Matrix){
     double    **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
     double **HouseHolderMatrixAux;
+    struct HouseHolderAnswer HouseHolderAnswer;
 
     MakeIdentityMatrix(HouseHolderMatrix);
     for (int i = 0; i < Columns - 2 ; ++i) {
@@ -220,7 +234,10 @@ double **HouseHolderMethod(double **Matrix){
                                                                                                HouseHolderMatrixAux));
         HouseHolderMatrix    = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
     }
-    return HouseHolderMatrix;
+
+    HouseHolderAnswer.HouseHolderMatrix = HouseHolderMatrix;
+    HouseHolderAnswer.TridiagonalMatrix = Matrix;
+    return HouseHolderAnswer;
 }
 
 /// Calcula o maior autovalor pelo metodo da potencia regular
@@ -228,25 +245,25 @@ double **HouseHolderMethod(double **Matrix){
 /// \param InitialVector = Vetor chute
 /// \param Tolerance     = Tolerancia para o erro
 /// \return struct com o maior autovalor e o autovetor correspondente
-struct AutoVectorAutoValue RegularPow(double **Matrix, double *InitialVector, double Tolerance){
-    struct AutoVectorAutoValue Answer;
-    Answer.Autovector = VectorAlocation();
+struct EigenValueVector RegularPow(double **Matrix, double *InitialVector, double Tolerance){
+    struct EigenValueVector Answer;
+    Answer.Eigenvector = VectorAlocation();
     double *q = NormalizingVector(InitialVector);
     double Error;
-    double Lambda;
-    double PreviousLambda = 0;
+    double EigenValue;
+    double PreviousEigenValue = 0;
     double *x = MatrixVectorMultiplication(Matrix, q);
 
     do{
         q = NormalizingVector(x);
         x = MatrixVectorMultiplication(Matrix, q);
-        Lambda = VectorMultiplication(q, x);
-        Error = fabs((Lambda - PreviousLambda)/Lambda);
-        PreviousLambda = Lambda;
+        EigenValue = VectorMultiplication(q, x);
+        Error = fabs((EigenValue - PreviousEigenValue)/EigenValue);
+        PreviousEigenValue = EigenValue;
     }
     while (Error > Tolerance);
-    Answer.Lambda = Lambda;
-    Answer.Autovector = x;
+    Answer.EigenValue = EigenValue;
+    Answer.Eigenvector = x;
     return Answer;
 }
 
@@ -327,14 +344,14 @@ double** LUDecompositionForInverse(double **Matrix){
 /// \param InitialVector = Vetor chute
 /// \param Tolerance     = Tolerancia para o erro
 /// \return struct com o maior autovalor e o autovetor correspondente
-struct AutoVectorAutoValue InversePow(double **Matrix, double *InitialVector, double Tolerance){
-    struct AutoVectorAutoValue Answer;
-    struct AutoVectorAutoValue RegularPowAnswer;
+struct EigenValueVector InversePow(double **Matrix, double *InitialVector, double Tolerance){
+    struct EigenValueVector Answer;
+    struct EigenValueVector RegularPowAnswer;
     double **InverseMatrix = LUDecompositionForInverse(Matrix);
 
     RegularPowAnswer  = RegularPow(InverseMatrix, InitialVector, Tolerance);
-    Answer.Lambda     = 1/RegularPowAnswer.Lambda;
-    Answer.Autovector = RegularPowAnswer.Autovector;
+    Answer.EigenValue     = 1/RegularPowAnswer.EigenValue;
+    Answer.Eigenvector = RegularPowAnswer.Eigenvector;
     return Answer;
 }
 
@@ -344,11 +361,11 @@ struct AutoVectorAutoValue InversePow(double **Matrix, double *InitialVector, do
 /// \param Tolerance
 /// \param Displacement
 /// \return uma struct com o autovalor com o deslocamento e o autovetor
-struct AutoVectorAutoValue DisplacementPow(double **Matrix, double *InitialVector, double Tolerance,
+struct EigenValueVector DisplacementPow(double **Matrix, double *InitialVector, double Tolerance,
                          double Displacement){
     double **IdentityMatrix = MatrixAlocation(Lines, Columns);
-    struct AutoVectorAutoValue Answer;
-    struct AutoVectorAutoValue InversePowAnswer;
+    struct EigenValueVector Answer;
+    struct EigenValueVector InversePowAnswer;
     double **DisplacementMatrix;
     double **DisplacementIdentityMultiplication;
 
@@ -365,17 +382,16 @@ struct AutoVectorAutoValue DisplacementPow(double **Matrix, double *InitialVecto
     DisplacementIdentityMultiplication = MatrixValueMultiplication(IdentityMatrix, Displacement);
     DisplacementMatrix                 = MatrixSubtraction(Matrix, DisplacementIdentityMultiplication);
     InversePowAnswer                   = RegularPow(DisplacementMatrix, InitialVector, Tolerance);
-    Answer.Lambda                      = Displacement + InversePowAnswer.Lambda;
-    Answer.Autovector                  = InversePowAnswer.Autovector;
+    Answer.EigenValue                      = Displacement + InversePowAnswer.EigenValue;
+    Answer.Eigenvector                  = InversePowAnswer.Eigenvector;
     return Answer;
 }
 
 int main() {
-    struct AutoVectorAutoValue AnswerRegularPow;
-    struct AutoVectorAutoValue AnswerInversePow;
+    struct EigenValueVector AnswerRegularPow;
+    struct EigenValueVector AnswerInversePow;
 
     double       **Matrix = MatrixAlocation(Lines, Columns);
-    double      **Matrix1 = MatrixAlocation(Lines, Columns);
     double      Tolerance = 0.0000001;
     double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
 
@@ -396,10 +412,10 @@ int main() {
     Matrix[2][2] = 3;
 
     AnswerRegularPow = RegularPow(Matrix, InitialVector, Tolerance);
-    printf("%f\n", AnswerRegularPow.Lambda);
+    printf("%f\n", AnswerRegularPow.EigenValue);
     AnswerInversePow = InversePow(Matrix, InitialVector, Tolerance);
-    printf("%f\n", AnswerInversePow.Lambda);
-    PrintMatrix(HouseHolderMethod(Matrix));
+    printf("%f\n", AnswerInversePow.EigenValue);
+    PrintMatrix(HouseHolderMethod(Matrix).HouseHolderMatrix);
     system("pause");
     return 0;
 }

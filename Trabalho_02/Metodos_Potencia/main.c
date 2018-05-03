@@ -220,7 +220,7 @@ double **HouseHolderMethod(double **Matrix){
                                                                                                HouseHolderMatrixAux));
         HouseHolderMatrix    = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
     }
-    return Matrix;
+    return HouseHolderMatrix;
 }
 
 /// Calcula o maior autovalor pelo metodo da potencia regular

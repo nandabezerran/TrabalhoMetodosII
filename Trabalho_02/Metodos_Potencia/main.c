@@ -175,6 +175,10 @@ double** MatrixSubtraction(double **Matrix1, double **Matrix2){
     return ResultingMatrix;
 }
 
+/// Construção da matriz de householder
+/// \param Matrix
+/// \param Index
+/// \return Matriz de householder
 double** ConstructHouseHolder(double **Matrix, int Index){
     double **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
     double            *VectorP = VectorAlocation();
@@ -191,17 +195,17 @@ double** ConstructHouseHolder(double **Matrix, int Index){
 
     MakeIdentityMatrix(HouseHolderMatrix);
 
-    for (int i = Index; i < Lines ; ++i) {
+    for (int i = Index + 1; i < Lines ; ++i) {
         VectorP[i] = Matrix[i][Index];
     }
 
-    VectorPNormalization = EuclidianNormalization(VectorP);
-    VectorPLine[Index]   = VectorPNormalization;
-    VectorN              = VectorSubtraction(VectorP, VectorPLine);
-    VectorNNormalized    = NormalizingVector(VectorN);
+    VectorPNormalization   = EuclidianNormalization(VectorP);
+    VectorPLine[Index + 1] = VectorPNormalization;
+    VectorN                = VectorSubtraction(VectorP, VectorPLine);
+    VectorNNormalized      = NormalizingVector(VectorN);
 
-    HouseHolderMatrix = MatrixSubtraction(HouseHolderMatrix, MatrixValueMultiplication(VectorTranposeVectorMultiplication(VectorNNormalized,
-                                                                                    VectorNNormalized),2));
+    HouseHolderMatrix = MatrixSubtraction(HouseHolderMatrix, MatrixValueMultiplication(
+                                          VectorTranposeVectorMultiplication(VectorNNormalized, VectorNNormalized),2));
     return HouseHolderMatrix;
 }
 
@@ -210,10 +214,11 @@ double **HouseHolderMethod(double **Matrix){
     double **HouseHolderMatrixAux;
 
     MakeIdentityMatrix(HouseHolderMatrix);
-    for (int i = 0; i < Columns-2 ; ++i) {
+    for (int i = 0; i < Columns - 2 ; ++i) {
         HouseHolderMatrixAux = ConstructHouseHolder(Matrix, i);
-        Matrix = MatrixMultiplication(HouseHolderMatrixAux, MatrixMultiplication(Matrix, HouseHolderMatrixAux));
-        HouseHolderMatrix = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
+        Matrix               = MatrixMultiplication(HouseHolderMatrixAux, MatrixMultiplication(Matrix,
+                                                                                               HouseHolderMatrixAux));
+        HouseHolderMatrix    = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
     }
     return Matrix;
 }

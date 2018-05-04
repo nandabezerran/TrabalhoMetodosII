@@ -13,18 +13,26 @@ struct HouseHolderAnswer{
     double **HouseHolderMatrix;
 };
 
+struct QRMatrix{
+    double **QMatrix;
+    double **RMatrix;
+};
+
 //Foi utilizada a normalização euclidiana
 
 int Columns    = 3;
 int Lines      = 3;
 int VectorSize = 3;
 
+
+/// Função para alocação do espaço de um vetor
+/// \return vetor com o espaço alocado
 double* VectorAlocation(){
     double *Vector = (double*) malloc(VectorSize * sizeof(double));
     return Vector;
 }
 
-/// Função para alocação da Matriz
+/// Função para alocação do espaço para uma Matriz
 /// \param Lines = quantidade de linhas
 /// \param Columns = quantidade de colunas
 /// \return a matriz com o espaço alocado
@@ -173,6 +181,18 @@ double** MatrixMultiplication(double **Matrix1, double **Matrix2){
     return ResultingMatrix;
 }
 
+/// Transpõe uma matriz
+/// \param Matrix
+/// \return a matriz transposta
+double** MatrixTranspose(double **Matrix){
+    double **TransposeMatrix = MatrixAlocation(Lines, Columns);
+    for(int i=0; i < Lines; ++i)
+        for(int j=0; j < Columns; ++j) {
+            TransposeMatrix[j][i] = Matrix[i][j];
+        }
+    return TransposeMatrix;
+}
+
 /// Função que calcula a matrix resultante da subtração de duas matrizes
 /// \param Matrix1
 /// \param Matrix2
@@ -222,6 +242,9 @@ double** ConstructHouseHolder(double **Matrix, int Index){
     return HouseHolderMatrix;
 }
 
+/// Calcula a matriz de HouseHolder e a matriz tridiagonal
+/// \param Matrix
+/// \return struct com a Matriz de HouseHolder e a Matriz tridiagonal
 struct HouseHolderAnswer HouseHolderMethod(double **Matrix){
     double    **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
     double **HouseHolderMatrixAux;
@@ -385,6 +408,60 @@ struct EigenValueVector DisplacementPow(double **Matrix, double *InitialVector, 
     Answer.EigenValue                      = Displacement + InversePowAnswer.EigenValue;
     Answer.Eigenvector                  = InversePowAnswer.Eigenvector;
     return Answer;
+}
+
+double** ConstructJacobianMatrix(double **Matrix, int Index){
+    double **JacobianMatrix = MatrixAlocation(Lines, Columns);
+    MakeIdentityMatrix(JacobianMatrix);
+    return JacobianMatrix;
+}
+
+/// Faz a decomposição da Matriz em duas matrizes uma Q e outra R
+/// \param Matrix
+/// \return struct com as duas matrizes(Q e R)
+struct QRMatrix QRDecomposition(double **Matrix){
+    struct QRMatrix QRAnswer;
+    double **QMatrixTranspose        = MatrixAlocation(Lines, Columns);
+    double **QMatrix                 = MatrixAlocation(Lines, Columns);
+    double **RMatrix;
+    double **JacobianMatrixTranspose;
+
+    MakeIdentityMatrix(QMatrixTranspose);
+    for (int i = 0; i < Lines - 1 ; ++i) {
+        JacobianMatrixTranspose = ConstructJacobianMatrix(Matrix, i);
+        Matrix                  = MatrixMultiplication(JacobianMatrixTranspose, Matrix);
+        QMatrixTranspose        = MatrixMultiplication(JacobianMatrixTranspose, QMatrixTranspose);
+
+    }
+    QMatrix = MatrixTranspose(QMatrix);
+    RMatrix = Matrix;
+    QRAnswer.QMatrix = QMatrix;
+    QRAnswer.RMatrix = RMatrix;
+
+    return QRAnswer;
+}
+
+/// Calcula auto valor e auto vetor pelo metodo QR
+/// \param Matrix
+/// \param Tolerance
+/// \return Struct com o autovalor e o autovetor
+struct EigenValueVector QRMethod(double **Matrix, double Tolerance){
+    double **X;
+    double **A;
+    double Error;
+    struct HouseHolderAnswer HouseHolderAnswer;
+    struct QRMatrix QRAnswer;
+    HouseHolderAnswer = HouseHolderMethod(Matrix);
+    X = HouseHolderAnswer.HouseHolderMatrix;
+    A = HouseHolderAnswer.TridiagonalMatrix;
+
+    do{
+        QRAnswer = QRDecomposition(A);
+        A = MatrixMultiplication(QRDecomposition(Matrix).RMatrix, QRDecomposition(Matrix).QMatrix);
+        X = MatrixMultiplication(X, QRAnswer.QMatrix);
+    }
+    while(Error); //TODO Ajeitar condição de parada
+
 }
 
 int main() {

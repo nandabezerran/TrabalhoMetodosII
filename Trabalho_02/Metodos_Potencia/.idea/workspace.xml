@@ -42,8 +42,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="813">
-              <caret line="529" column="29" lean-forward="false" selection-start-line="529" selection-start-column="29" selection-end-line="529" selection-end-column="29" />
+            <state relative-caret-position="385">
+              <caret line="562" column="68" lean-forward="false" selection-start-line="562" selection-start-column="68" selection-end-line="562" selection-end-column="68" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -163,7 +163,7 @@
       <workItem from="1525305557928" duration="2806000" />
       <workItem from="1525384883924" duration="10299000" />
       <workItem from="1525899800441" duration="13449000" />
-      <workItem from="1525990122095" duration="1002000" />
+      <workItem from="1525990122095" duration="3771000" />
     </task>
     <task id="LOCAL-00001" summary="Decomposicao LU OK Matriz Inversa OK">
       <created>1524600045215</created>
@@ -235,11 +235,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525918387043</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Erro Metodo Potencia (Matrix 2x2) LU sem pivoteamento QR erro">
+      <created>1525991131686</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1525991131687</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65967000" />
+    <option name="totallyTimeSpent" value="68736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -287,14 +294,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>507</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="31" />
+      <option name="time" value="36" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -577,8 +577,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="529" column="29" lean-forward="false" selection-start-line="529" selection-start-column="29" selection-end-line="529" selection-end-column="29" />
+        <state relative-caret-position="385">
+          <caret line="562" column="68" lean-forward="false" selection-start-line="562" selection-start-column="68" selection-end-line="562" selection-end-column="68" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
           </folding>

@@ -60,6 +60,7 @@ void PrintMatrix(double **Matrix){
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 /// Normalização do vetor
@@ -283,8 +284,9 @@ double** ConstructHouseHolder(double **Matrix, int Index){
 /// \param Matrix
 /// \return struct com a Matriz de HouseHolder e a Matriz tridiagonal
 struct HouseHolderAnswer HouseHolderMethod(double **Matrix){
-    double    **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
+    double **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
     double **HouseHolderMatrixAux;
+
     struct HouseHolderAnswer HouseHolderAnswer;
 
     MakeIdentityMatrix(HouseHolderMatrix);
@@ -496,12 +498,15 @@ struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
     do{
         QRAnswer = QRDecomposition(A);
 
-        A = MatrixMultiplication(QRDecomposition(Matrix).RMatrix, QRDecomposition(Matrix).QMatrix);
+        A = MatrixMultiplication(QRAnswer.RMatrix, QRAnswer.QMatrix);
         X = MatrixMultiplication(X, QRAnswer.QMatrix);
 
         DiagonalMatrix   = MakeDiagonalMatrix(A);
         AWithoutDiagonal = MatrixSubtraction(A, DiagonalMatrix);
+        PrintMatrix(AWithoutDiagonal);
         Normalization    = MatrixEuclidianNormalization(AWithoutDiagonal);
+        printf("\n");
+        PrintMatrix(A);
 
     }
 
@@ -555,7 +560,7 @@ int main() {
     printf("Displacement Pow: %f\n", AnswerDisplacementPow.EigenValue);
 
     AnswerQr = QRMethod(Matrix, Tolerance);
-    printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[0]);
+    printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[2]);
 
     //PrintMatrix(HouseHolderMethod(Matrix).HouseHolderMatrix);
 

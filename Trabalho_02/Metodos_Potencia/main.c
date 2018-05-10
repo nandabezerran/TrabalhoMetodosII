@@ -63,6 +63,16 @@ void PrintMatrix(double **Matrix){
     printf("\n");
 }
 
+/// Imprime Vetor
+/// \param Vector
+void PrintVector(double *Vector){
+    for (int i = 0; i < Lines; ++i) {
+        printf("%f", Vector[i]);
+        printf("\n");
+    }
+    printf("\n");
+}
+
 /// Normalização do vetor
 /// \param Vector
 /// \return a norma do vetor
@@ -503,10 +513,7 @@ struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
 
         DiagonalMatrix   = MakeDiagonalMatrix(A);
         AWithoutDiagonal = MatrixSubtraction(A, DiagonalMatrix);
-        PrintMatrix(AWithoutDiagonal);
         Normalization    = MatrixEuclidianNormalization(AWithoutDiagonal);
-        printf("\n");
-        PrintMatrix(A);
 
     }
 
@@ -516,6 +523,7 @@ struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
     }
 
     SetOfEigenValueVectorAnswer.EigenVectors = X;
+    PrintMatrix(X);
     SetOfEigenValueVectorAnswer.EigenValues  = EigenValues;
 
     return SetOfEigenValueVectorAnswer;
@@ -560,7 +568,7 @@ int main() {
     printf("Displacement Pow: %f\n", AnswerDisplacementPow.EigenValue);
 
     AnswerQr = QRMethod(Matrix, Tolerance);
-    printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[2]);
+    printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[0]);
 
     //PrintMatrix(HouseHolderMethod(Matrix).HouseHolderMatrix);
 

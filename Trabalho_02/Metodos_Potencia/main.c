@@ -114,7 +114,7 @@ double** MakeDiagonalMatrix(double **Matrix){
                 DiagonalMatrix[l][m] = Matrix[l][m];
             }
             else{
-                Matrix[l][m] = 0.0;
+                DiagonalMatrix[l][m] = 0.0;
             }
         }
     }
@@ -153,7 +153,7 @@ double** VectorTranposeVectorMultiplication(const double *Vector1, const double 
     double **ResultingMatrix  = MatrixAlocation(Lines, Columns);
     for (int i = 0; i < Columns; ++i) {
         for (int j = 0; j < Lines ; ++j) {
-               ResultingMatrix[j][i] = Vector1[j] * Vector2[i];
+            ResultingMatrix[j][i] = Vector1[j] * Vector2[i];
         }
     }
     return ResultingMatrix;
@@ -275,7 +275,7 @@ double** ConstructHouseHolder(double **Matrix, int Index){
     VectorNNormalized      = NormalizingVector(VectorN);
 
     HouseHolderMatrix = MatrixSubtraction(HouseHolderMatrix, MatrixValueMultiplication(
-                                          VectorTranposeVectorMultiplication(VectorNNormalized, VectorNNormalized),2));
+            VectorTranposeVectorMultiplication(VectorNNormalized, VectorNNormalized),2));
     return HouseHolderMatrix;
 }
 
@@ -411,7 +411,7 @@ struct EigenValueVector InversePow(double **Matrix, double *InitialVector, doubl
 /// \param Displacement
 /// \return uma struct com o autovalor com o deslocamento e o autovetor
 struct EigenValueVector DisplacementPow(double **Matrix, double *InitialVector, double Tolerance,
-                         double Displacement){
+                                        double Displacement){
     double **IdentityMatrix = MatrixAlocation(Lines, Columns);
     double **DisplacementMatrix;
     double **DisplacementIdentityMultiplication;
@@ -439,10 +439,10 @@ double** ConstructJacobianMatrixTranspose(double **Matrix, int Index){
 
     MakeIdentityMatrix(JacobianMatrix);
 
-    JacobianMatrix [Index]     [Index]     = cos(Teta);
-    JacobianMatrix [Index]     [Index+1]   = sin(Teta);
+    JacobianMatrix [Index]     [Index]     =  cos(Teta);
+    JacobianMatrix [Index]     [Index+1]   =  sin(Teta);
     JacobianMatrix [Index + 1] [Index]     = -sin(Teta);
-    JacobianMatrix [Index + 1] [Index + 1] = cos(Teta);
+    JacobianMatrix [Index + 1] [Index + 1] =  cos(Teta);
 
     return JacobianMatrix;
 }
@@ -452,28 +452,24 @@ double** ConstructJacobianMatrixTranspose(double **Matrix, int Index){
 /// \return struct com as duas matrizes(Q e R)
 struct QRMatrix QRDecomposition(double **Matrix){
     struct QRMatrix QRAnswer;
-    double **QMatrixTranspose        = MatrixAlocation(Lines, Columns);
-    double **QMatrix                 = MatrixAlocation(Lines, Columns);
+    double **QMatrixTranspose = MatrixAlocation(Lines, Columns);
+    double **QMatrix;
     double **RMatrix;
     double **JacobianMatrixTranspose;
 
     MakeIdentityMatrix(QMatrixTranspose);
     for (int i = 0; i < Lines - 1 ; ++i) {
+
         JacobianMatrixTranspose = ConstructJacobianMatrixTranspose(Matrix, i);
-        PrintMatrix(JacobianMatrixTranspose);
         Matrix                  = MatrixMultiplication(JacobianMatrixTranspose, Matrix);
         QMatrixTranspose        = MatrixMultiplication(JacobianMatrixTranspose, QMatrixTranspose);
 
     }
-    QMatrix = MatrixTranspose(QMatrix);
-    RMatrix = Matrix;
+    QMatrix          = MatrixTranspose(QMatrixTranspose);
+    RMatrix          = Matrix;
     QRAnswer.QMatrix = QMatrix;
     QRAnswer.RMatrix = RMatrix;
-    printf("\n");
-    PrintMatrix(QRAnswer.QMatrix);
-    printf("\n");
-    PrintMatrix(QRAnswer.RMatrix);
-    printf("\n");
+
     return QRAnswer;
 }
 
@@ -484,9 +480,11 @@ struct QRMatrix QRDecomposition(double **Matrix){
 struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
     double **X;
     double **A;
+    double **AWithoutDiagonal;
     double **DiagonalMatrix;
     double Normalization;
     double *EigenValues = VectorAlocation();
+
     struct HouseHolderAnswer HouseHolderAnswer;
     struct QRMatrix QRAnswer;
     struct SetOfEigenValueVector SetOfEigenValueVectorAnswer;
@@ -500,10 +498,13 @@ struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
 
         A = MatrixMultiplication(QRDecomposition(Matrix).RMatrix, QRDecomposition(Matrix).QMatrix);
         X = MatrixMultiplication(X, QRAnswer.QMatrix);
-        DiagonalMatrix = MakeDiagonalMatrix(A);
-        Normalization = MatrixEuclidianNormalization(DiagonalMatrix);
+
+        DiagonalMatrix   = MakeDiagonalMatrix(A);
+        AWithoutDiagonal = MatrixSubtraction(A, DiagonalMatrix);
+        Normalization    = MatrixEuclidianNormalization(AWithoutDiagonal);
 
     }
+
     while(Normalization > Tolerance);
     for (int i = 0; i < VectorSize; ++i) {
         EigenValues[i] = DiagonalMatrix[i][i];
@@ -532,26 +533,30 @@ int main() {
     InitialVector[1] = 1.0;
     InitialVector[2] = 1.0;
 
-    Matrix[0][0] = 4.0;
+    Matrix[0][0] =  4.0;
     Matrix[0][1] = -1.0;
-    Matrix[0][2] = 1.0;
+    Matrix[0][2] =  1.0;
 
     Matrix[1][0] = -1.0;
-    Matrix[1][1] = 3.0;
+    Matrix[1][1] =  3.0;
     Matrix[1][2] = -2.0;
 
-    Matrix[2][0] = 1.0;
+    Matrix[2][0] =  1.0;
     Matrix[2][1] = -2.0;
-    Matrix[2][2] = 3.0;
+    Matrix[2][2] =  3.0;
 
     AnswerRegularPow = RegularPow(Matrix, InitialVector, Tolerance);
     printf("Regular Pow: %f\n", AnswerRegularPow.EigenValue);
+
     AnswerInversePow = InversePow(Matrix, InitialVector, Tolerance);
     printf("Inverse Pow: %f\n", AnswerInversePow.EigenValue);
+
     AnswerDisplacementPow = DisplacementPow(Matrix, InitialVector, Tolerance, Displacement);
     printf("Displacement Pow: %f\n", AnswerDisplacementPow.EigenValue);
+
     AnswerQr = QRMethod(Matrix, Tolerance);
     printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[0]);
+
     //PrintMatrix(HouseHolderMethod(Matrix).HouseHolderMatrix);
 
     system("pause");

@@ -34,7 +34,7 @@ int vectorSize = 3;
 
 /// Função para alocação do espaço de um vetor
 /// \return vetor com o espaço alocado
-double* VectorAlocation(){
+double* VectorAllocation(){
     double *vector = (double*) malloc(vectorSize * sizeof(double));
     return vector;
 }
@@ -43,7 +43,7 @@ double* VectorAlocation(){
 /// \param lines = quantidade de linhas
 /// \param columns = quantidade de colunas
 /// \return a matriz com o espaço alocado
-double** MatrixAlocation(int lines, int columns){
+double** MatrixAllocation(int lines, int columns){
     double **matrix = (double**)malloc(lines * sizeof(double*));
 
     for (int i = 0; i < lines; i++){
@@ -120,7 +120,7 @@ double* MatrixVectorMultiplication(double **matrix, const double *vector){
 /// \param matrix
 /// \return matriz diagonal
 double** MakeDiagonalMatrix(double **matrix){
-    double **diagonalMatrix = MatrixAlocation(lines, columns);
+    double **diagonalMatrix = MatrixAllocation(lines, columns);
     for (int l = 0; l < lines ; ++l) {
         for (int m = 0; m < columns; ++m) {
             if (l == m){
@@ -163,7 +163,7 @@ double VectorMultiplication(const double *vector1, const double *vector2) {
 /// \param vector2
 /// \return Matriz resultante
 double** VectorTranposeVectorMultiplication(const double *vector1, const double *vector2){
-    double **resultingMatrix  = MatrixAlocation(lines, columns);
+    double **resultingMatrix  = MatrixAllocation(lines, columns);
     for (int i = 0; i < columns; ++i) {
         for (int j = 0; j < lines ; ++j) {
             resultingMatrix[j][i] = vector1[j] * vector2[i];
@@ -177,7 +177,7 @@ double** VectorTranposeVectorMultiplication(const double *vector1, const double 
 /// \param vector2
 /// \return Vetor resultante
 double* VectorSubtraction(const double *vector1, const double *vector2){
-    double *resultingVector = VectorAlocation();
+    double *resultingVector = VectorAllocation();
     for (int i = 0; i < lines; ++i) {
         resultingVector[i] = vector1[i] - vector2[i];
     }
@@ -204,7 +204,7 @@ void MakeIdentityMatrix(double **matrix) {
 /// \param value
 /// \return Matriz resultado da multiplicação
 double** MatrixValueMultiplication(double **matrix, double value){
-    double **resultingMatrix = MatrixAlocation(lines, columns);
+    double **resultingMatrix = MatrixAllocation(lines, columns);
     for (int l = 0; l < lines ; ++l) {
         for (int m = 0; m < columns; ++m) {
             resultingMatrix[l][m] = matrix[l][m] * value;
@@ -219,7 +219,7 @@ double** MatrixValueMultiplication(double **matrix, double value){
 /// \param matrix2
 /// \return Matriz resultado da multiplicação
 double** MatrixMultiplication(double **matrix1, double **matrix2){
-    double **resultingMatrix = MatrixAlocation(lines, columns);
+    double **resultingMatrix = MatrixAllocation(lines, columns);
     for (int i = 0; i < lines ; ++i) {
         for (int j = 0; j < columns ; ++j) {
             resultingMatrix[i][j] = 0;
@@ -235,7 +235,7 @@ double** MatrixMultiplication(double **matrix1, double **matrix2){
 /// \param matrix
 /// \return a matriz transposta
 double** MatrixTranspose(double **matrix){
-    double **transposeMatrix = MatrixAlocation(lines, columns);
+    double **transposeMatrix = MatrixAllocation(lines, columns);
     for(int i=0; i < lines; ++i)
         for(int j=0; j < columns; ++j) {
             transposeMatrix[j][i] = matrix[i][j];
@@ -248,7 +248,7 @@ double** MatrixTranspose(double **matrix){
 /// \param matrix2
 /// \return Matriz resultado da subtração
 double** MatrixSubtraction(double **matrix1, double **matrix2){
-    double **resultingMatrix = MatrixAlocation(lines, columns);
+    double **resultingMatrix = MatrixAllocation(lines, columns);
     for (int l = 0; l < lines ; ++l) {
         for (int m = 0; m < columns; ++m) {
             resultingMatrix[l][m] = matrix1[l][m] - matrix2[l][m];
@@ -263,9 +263,9 @@ double** MatrixSubtraction(double **matrix1, double **matrix2){
 /// \param index
 /// \return Matriz de householder
 double** ConstructHouseHolder(double **matrix, int index){
-    double **houseHolderMatrix = MatrixAlocation(lines, columns);
-    double            *vectorP = VectorAlocation();
-    double        *vectorPLine = VectorAlocation();
+    double **houseHolderMatrix = MatrixAllocation(lines, columns);
+    double            *vectorP = VectorAllocation();
+    double        *vectorPLine = VectorAllocation();
 
     double               *vectorN;
     double     *vectorNNormalized;
@@ -296,7 +296,7 @@ double** ConstructHouseHolder(double **matrix, int index){
 /// \param matrix
 /// \return struct com a Matriz de HouseHolder e a Matriz tridiagonal
 struct HouseHolderAnswer HouseHolderMethod(double **matrix){
-    double **houseHolderMatrix = MatrixAlocation(lines, columns);
+    double **houseHolderMatrix = MatrixAllocation(lines, columns);
     double **houseHolderMatrixAux;
 
     struct HouseHolderAnswer houseHolderAnswer;
@@ -321,7 +321,7 @@ struct HouseHolderAnswer HouseHolderMethod(double **matrix){
 /// \return struct com o maior autovalor e o autovetor correspondente
 struct EigenValueVector RegularPow(double **matrix, double *initialVector, double tolerance){
     struct EigenValueVector answer;
-    answer.eigenVector = VectorAlocation();
+    answer.eigenVector = VectorAllocation();
     double *q = NormalizingVector(initialVector);
     double error;
     double eigenValue;
@@ -345,11 +345,11 @@ struct EigenValueVector RegularPow(double **matrix, double *initialVector, doubl
 /// \param matrix = Matriz original
 /// \return ponteiro para a inversa da Matriz original
 double** LUDecompositionForInverse(double **matrix){
-    double              **l = MatrixAlocation(lines, columns);
-    double              **u = MatrixAlocation(lines, columns);
-    double              **y = MatrixAlocation(lines, columns);
-    double **identityMatrix = MatrixAlocation(lines, columns);
-    double  **inverseMatrix = MatrixAlocation(lines, columns);
+    double              **l = MatrixAllocation(lines, columns);
+    double              **u = MatrixAllocation(lines, columns);
+    double              **y = MatrixAllocation(lines, columns);
+    double **identityMatrix = MatrixAllocation(lines, columns);
+    double  **inverseMatrix = MatrixAllocation(lines, columns);
 
     //Decomposição LU -> Matriz = l * u
     //Povoamento da Matriz identidade e das Matrizes l e u
@@ -426,7 +426,7 @@ struct EigenValueVector InversePow(double **matrix, double *initialVector, doubl
 /// \return uma struct com o autovalor com o deslocamento e o autovetor
 struct EigenValueVector DisplacementPow(double **matrix, double *initialVector, double tolerance,
                                         double displacement){
-    double **identityMatrix = MatrixAlocation(lines, columns);
+    double **identityMatrix = MatrixAllocation(lines, columns);
     double **displacementMatrix;
     double **displacementIdentityMultiplication;
 
@@ -447,7 +447,7 @@ struct EigenValueVector DisplacementPow(double **matrix, double *initialVector, 
 /// \param index
 /// \return Matriz de jacobi
 double** ConstructJacobianMatrixTranspose(double **matrix, int index){
-    double **jacobianMatrix = MatrixAlocation(lines, columns);
+    double **jacobianMatrix = MatrixAllocation(lines, columns);
     double      tetaTangent = matrix[index + 1][index]/matrix[index][index];
     double             teta = atan(tetaTangent);
 
@@ -466,7 +466,7 @@ double** ConstructJacobianMatrixTranspose(double **matrix, int index){
 /// \return struct com as duas matrizes(Q e R)
 struct QRMatrix QRDecomposition(double **matrix){
     struct QRMatrix qrAnswer;
-    double **qMatrixTranspose = MatrixAlocation(lines, columns);
+    double **qMatrixTranspose = MatrixAllocation(lines, columns);
     double **qMatrix;
     double **rMatrix;
     double **jacobianMatrixTranspose;
@@ -497,7 +497,7 @@ struct SetOfEigenValueVector QRMethod(double **matrix, double tolerance){
     double **aWithoutDiagonal;
     double **diagonalMatrix;
     double normalization;
-    double *eigenValues = VectorAlocation();
+    double *eigenValues = VectorAllocation();
 
     struct HouseHolderAnswer houseHolderAnswer;
     struct QRMatrix qrAnswer;
@@ -537,7 +537,7 @@ int main() {
     struct EigenValueVector      answerDisplacementPow;
     struct SetOfEigenValueVector              answerQr;
 
-    double       **matrix = MatrixAlocation(lines, columns);
+    double       **matrix = MatrixAllocation(lines, columns);
     double      tolerance = 0.001;
     double *initialVector = (double*)malloc(vectorSize * sizeof(double*));
     double   displacement = 5.0;

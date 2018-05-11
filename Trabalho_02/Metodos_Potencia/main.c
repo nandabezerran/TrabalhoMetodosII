@@ -3,59 +3,61 @@
 #include <stdlib.h>
 #include <math.h>
 
+//Definição das structs
 struct EigenValueVector{
-    double   EigenValue;
-    double *EigenVector;
+    double   eigenValue;
+    double *eigenVector;
 };
 
 struct SetOfEigenValueVector{
-    double   *EigenValues;
-    double **EigenVectors;
+    double   *eigenValues;
+    double **eigenVectors;
 };
 
 struct HouseHolderAnswer{
-    double **TridiagonalMatrix;
-    double **HouseHolderMatrix;
+    double **tridiagonalMatrix;
+    double **houseHolderMatrix;
 };
 
 struct QRMatrix{
-    double **QMatrix;
-    double **RMatrix;
+    double **qMatrix;
+    double **rMatrix;
 };
 
+//Definição do tamanho da matriz e do vetor
+
+int columns    = 3;
+int lines      = 3;
+int vectorSize = 3;
+
 //Foi utilizada a normalização euclidiana
-
-int Columns    = 3;
-int Lines      = 3;
-int VectorSize = 3;
-
 
 /// Função para alocação do espaço de um vetor
 /// \return vetor com o espaço alocado
 double* VectorAlocation(){
-    double *Vector = (double*) malloc(VectorSize * sizeof(double));
-    return Vector;
+    double *vector = (double*) malloc(vectorSize * sizeof(double));
+    return vector;
 }
 
 /// Função para alocação do espaço para uma Matriz
-/// \param Lines = quantidade de linhas
-/// \param Columns = quantidade de colunas
+/// \param lines = quantidade de linhas
+/// \param columns = quantidade de colunas
 /// \return a matriz com o espaço alocado
-double** MatrixAlocation(int Lines, int Columns){
-    double **Matrix = (double**)malloc(Lines * sizeof(double*));
+double** MatrixAlocation(int lines, int columns){
+    double **matrix = (double**)malloc(lines * sizeof(double*));
 
-    for (int i = 0; i < Lines; i++){
-        Matrix[i] = (double*) malloc(Columns * sizeof(double));
+    for (int i = 0; i < lines; i++){
+        matrix[i] = (double*) malloc(columns * sizeof(double));
     }
-    return Matrix;
+    return matrix;
 }
 
 /// Imprime a Matriz
-/// \param Matrix
-void PrintMatrix(double **Matrix){
-    for (int l = 0; l < Lines; ++l) {
-        for (int m = 0; m < Columns; ++m) {
-            printf("%f", Matrix[l][m]);
+/// \param matrix
+void PrintMatrix(double **matrix){
+    for (int l = 0; l < lines; ++l) {
+        for (int m = 0; m < columns; ++m) {
+            printf("%f", matrix[l][m]);
             printf("\t");
         }
         printf("\n");
@@ -64,513 +66,512 @@ void PrintMatrix(double **Matrix){
 }
 
 /// Imprime Vetor
-/// \param Vector
-void PrintVector(double *Vector){
-    for (int i = 0; i < Lines; ++i) {
-        printf("%f", Vector[i]);
+/// \param vector
+void PrintVector(double *vector){
+    for (int i = 0; i < lines; ++i) {
+        printf("%f", vector[i]);
         printf("\n");
     }
     printf("\n");
 }
 
 /// Normalização do vetor
-/// \param Vector
+/// \param vector
 /// \return a norma do vetor
-double EuclidianNormalization(double *Vector) {
-    double Normalization = 0;
-    for (int j = 0; j < VectorSize; ++j) {
-        Normalization += pow(Vector[j], 2);
+double EuclidianNormalization(double *vector) {
+    double normalization = 0;
+    for (int j = 0; j < vectorSize; ++j) {
+        normalization += pow(vector[j], 2);
     }
-    Normalization = sqrt(Normalization);
-    return Normalization;
+    normalization = sqrt(normalization);
+    return normalization;
 }
 
 /// Faz a normalização euclidiana de uma matriz
-/// \param Matrix
+/// \param matrix
 /// \return a norma da matriz
-double MatrixEuclidianNormalization(double **Matrix){
-    double Normalization = 0;
-    for (int i = 0; i < Lines; ++i) {
-        for (int j = 0; j < Columns; ++j) {
-            Normalization += pow(Matrix[i][j], 2);
+double MatrixEuclidianNormalization(double **matrix){
+    double normalization = 0;
+    for (int i = 0; i < lines; ++i) {
+        for (int j = 0; j < columns; ++j) {
+            normalization += pow(matrix[i][j], 2);
         }
     }
-    Normalization = sqrt(Normalization);
-    return Normalization;
+    normalization = sqrt(normalization);
+    return normalization;
 }
 
 /// Multiplica matriz e vetor
-/// \param Matrix
-/// \param Vector
+/// \param matrix
+/// \param vector
 /// \return o vetor resultante da multiplicação
-double* MatrixVectorMultiplication(double **Matrix, const double *Vector){
-    double *ResultingVector = (double*) malloc(VectorSize * sizeof(double));
-    for (int i = 0; i < Lines ; ++i) {
-        ResultingVector[i] = 0;
-        for (int j = 0; j < Columns; ++j) {
-            ResultingVector[i] += Vector[j] * Matrix[i][j];
+double* MatrixVectorMultiplication(double **matrix, const double *vector){
+    double *resultingVector = (double*) malloc(vectorSize * sizeof(double));
+    for (int i = 0; i < lines ; ++i) {
+        resultingVector[i] = 0;
+        for (int j = 0; j < columns; ++j) {
+            resultingVector[i] += vector[j] * matrix[i][j];
         }
     }
-    return ResultingVector;
+    return resultingVector;
 }
 
 /// Faz a matriz diagonal de uma dada matriz
-/// \param Matrix
+/// \param matrix
 /// \return matriz diagonal
-double** MakeDiagonalMatrix(double **Matrix){
-    double **DiagonalMatrix = MatrixAlocation(Lines, Columns);
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
+double** MakeDiagonalMatrix(double **matrix){
+    double **diagonalMatrix = MatrixAlocation(lines, columns);
+    for (int l = 0; l < lines ; ++l) {
+        for (int m = 0; m < columns; ++m) {
             if (l == m){
-                DiagonalMatrix[l][m] = Matrix[l][m];
+                diagonalMatrix[l][m] = matrix[l][m];
             }
             else{
-                DiagonalMatrix[l][m] = 0.0;
+                diagonalMatrix[l][m] = 0.0;
             }
         }
     }
-    return DiagonalMatrix;
+    return diagonalMatrix;
 }
 
 /// Normaliza o vetor
-/// \param Vector
+/// \param vector
 /// \return o vetor normalizado
-double* NormalizingVector(double *Vector) {
-    double *NormalizedVector = (double*) malloc(VectorSize * sizeof(double));
-    double     Normalization = EuclidianNormalization(Vector);
-    for (int i = 0; i < VectorSize; ++i) {
-        NormalizedVector[i] = Vector[i]/Normalization;
+double* NormalizingVector(double *vector) {
+    double *normalizedVector = (double*) malloc(vectorSize * sizeof(double));
+    double     normalization = EuclidianNormalization(vector);
+    for (int i = 0; i < vectorSize; ++i) {
+        normalizedVector[i] = vector[i]/normalization;
     }
-    return NormalizedVector;
+    return normalizedVector;
 }
 
 /// Multiplicação de vetores
-/// \param Vector1
-/// \param Vector2
+/// \param vector1
+/// \param vector2
 /// \return o resultado da multiplicacao
-double VectorMultiplication(const double *Vector1, const double *Vector2) {
-    double Result = 0;
-    for (int i = 0; i < VectorSize ; ++i) {
-        Result += Vector1[i] * Vector2[i];
+double VectorMultiplication(const double *vector1, const double *vector2) {
+    double result = 0;
+    for (int i = 0; i < vectorSize ; ++i) {
+        result += vector1[i] * vector2[i];
     }
-    return Result;
+    return result;
 }
 
 /// Multiplicacao de um vetor transposto por um vetor normal
-/// \param Vector1
-/// \param Vector2
+/// \param vector1
+/// \param vector2
 /// \return Matriz resultante
-double** VectorTranposeVectorMultiplication(const double *Vector1, const double *Vector2){
-    double **ResultingMatrix  = MatrixAlocation(Lines, Columns);
-    for (int i = 0; i < Columns; ++i) {
-        for (int j = 0; j < Lines ; ++j) {
-            ResultingMatrix[j][i] = Vector1[j] * Vector2[i];
+double** VectorTranposeVectorMultiplication(const double *vector1, const double *vector2){
+    double **resultingMatrix  = MatrixAlocation(lines, columns);
+    for (int i = 0; i < columns; ++i) {
+        for (int j = 0; j < lines ; ++j) {
+            resultingMatrix[j][i] = vector1[j] * vector2[i];
         }
     }
-    return ResultingMatrix;
+    return resultingMatrix;
 }
 
 /// Subtração entre dois vetores
-/// \param Vector1
-/// \param Vector2
+/// \param vector1
+/// \param vector2
 /// \return Vetor resultante
-double* VectorSubtraction(const double *Vector1, const double *Vector2){
-    double *ResultingVector = VectorAlocation();
-    for (int i = 0; i < Lines; ++i) {
-        ResultingVector[i] = Vector1[i] - Vector2[i];
+double* VectorSubtraction(const double *vector1, const double *vector2){
+    double *resultingVector = VectorAlocation();
+    for (int i = 0; i < lines; ++i) {
+        resultingVector[i] = vector1[i] - vector2[i];
     }
-    return ResultingVector;
+    return resultingVector;
 }
 
 /// Transforma uma matriz numa matriz identidade
-/// \param Matrix
-void MakeIdentityMatrix(double **Matrix) {
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
+/// \param matrix
+void MakeIdentityMatrix(double **matrix) {
+    for (int l = 0; l < lines ; ++l) {
+        for (int m = 0; m < columns; ++m) {
             if (l == m){
-                Matrix[l][m] = 1.0;
+                matrix[l][m] = 1.0;
             }
             else{
-                Matrix[l][m] = 0.0;
+                matrix[l][m] = 0.0;
             }
         }
     }
 }
 
 /// Função para calcular a matriz resultante da multiplicação de uma matriz por um valor escalar
-/// \param Matrix
-/// \param Displacement
+/// \param matrix
+/// \param value
 /// \return Matriz resultado da multiplicação
-double** MatrixValueMultiplication(double **Matrix, double Displacement){
-    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
-            ResultingMatrix[l][m] = Matrix[l][m] * Displacement;
+double** MatrixValueMultiplication(double **matrix, double value){
+    double **resultingMatrix = MatrixAlocation(lines, columns);
+    for (int l = 0; l < lines ; ++l) {
+        for (int m = 0; m < columns; ++m) {
+            resultingMatrix[l][m] = matrix[l][m] * value;
 
         }
     }
-    return ResultingMatrix;
+    return resultingMatrix;
 }
 
 /// Função para multiplicar matrizes
-/// \param Matrix1
-/// \param Matrix2
+/// \param matrix1
+/// \param matrix2
 /// \return Matriz resultado da multiplicação
-double** MatrixMultiplication(double **Matrix1, double **Matrix2){
-    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
-    for (int i = 0; i < Lines ; ++i) {
-        for (int j = 0; j < Columns ; ++j) {
-            ResultingMatrix[i][j] = 0;
-            for (int k = 0; k < Columns; ++k) {
-                ResultingMatrix[i][j] += Matrix1[i][k] * Matrix2[k][j];
+double** MatrixMultiplication(double **matrix1, double **matrix2){
+    double **resultingMatrix = MatrixAlocation(lines, columns);
+    for (int i = 0; i < lines ; ++i) {
+        for (int j = 0; j < columns ; ++j) {
+            resultingMatrix[i][j] = 0;
+            for (int k = 0; k < columns; ++k) {
+                resultingMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
             }
         }
     }
-    return ResultingMatrix;
+    return resultingMatrix;
 }
 
 /// Transpõe uma matriz
-/// \param Matrix
+/// \param matrix
 /// \return a matriz transposta
-double** MatrixTranspose(double **Matrix){
-    double **TransposeMatrix = MatrixAlocation(Lines, Columns);
-    for(int i=0; i < Lines; ++i)
-        for(int j=0; j < Columns; ++j) {
-            TransposeMatrix[j][i] = Matrix[i][j];
+double** MatrixTranspose(double **matrix){
+    double **transposeMatrix = MatrixAlocation(lines, columns);
+    for(int i=0; i < lines; ++i)
+        for(int j=0; j < columns; ++j) {
+            transposeMatrix[j][i] = matrix[i][j];
         }
-    return TransposeMatrix;
+    return transposeMatrix;
 }
 
 /// Função que calcula a matrix resultante da subtração de duas matrizes
-/// \param Matrix1
-/// \param Matrix2
+/// \param matrix1
+/// \param matrix2
 /// \return Matriz resultado da subtração
-double** MatrixSubtraction(double **Matrix1, double **Matrix2){
-    double **ResultingMatrix = MatrixAlocation(Lines, Columns);
-    for (int l = 0; l < Lines ; ++l) {
-        for (int m = 0; m < Columns; ++m) {
-            ResultingMatrix[l][m] = Matrix1[l][m] - Matrix2[l][m];
+double** MatrixSubtraction(double **matrix1, double **matrix2){
+    double **resultingMatrix = MatrixAlocation(lines, columns);
+    for (int l = 0; l < lines ; ++l) {
+        for (int m = 0; m < columns; ++m) {
+            resultingMatrix[l][m] = matrix1[l][m] - matrix2[l][m];
 
         }
     }
-    return ResultingMatrix;
+    return resultingMatrix;
 }
 
 /// Construção da matriz de householder
-/// \param Matrix
-/// \param Index
+/// \param matrix
+/// \param index
 /// \return Matriz de householder
-double** ConstructHouseHolder(double **Matrix, int Index){
-    double **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
-    double            *VectorP = VectorAlocation();
-    double        *VectorPLine = VectorAlocation();
+double** ConstructHouseHolder(double **matrix, int index){
+    double **houseHolderMatrix = MatrixAlocation(lines, columns);
+    double            *vectorP = VectorAlocation();
+    double        *vectorPLine = VectorAlocation();
 
-    double               *VectorN;
-    double     *VectorNNormalized;
-    double   VectorPNormalization;
+    double               *vectorN;
+    double     *vectorNNormalized;
+    double   vectorPNormalization;
 
-    for (int l = 0; l < Lines ; ++l) {
-        VectorP[l]     = 0;
-        VectorPLine[l] = 0;
+    for (int l = 0; l < lines ; ++l) {
+        vectorP[l]     = 0;
+        vectorPLine[l] = 0;
     }
 
-    MakeIdentityMatrix(HouseHolderMatrix);
+    MakeIdentityMatrix(houseHolderMatrix);
 
-    for (int i = Index + 1; i < Lines ; ++i) {
-        VectorP[i] = Matrix[i][Index];
+    for (int i = index + 1; i < lines ; ++i) {
+        vectorP[i] = matrix[i][index];
     }
 
-    VectorPNormalization   = EuclidianNormalization(VectorP);
-    VectorPLine[Index + 1] = VectorPNormalization;
-    VectorN                = VectorSubtraction(VectorP, VectorPLine);
-    VectorNNormalized      = NormalizingVector(VectorN);
+    vectorPNormalization   = EuclidianNormalization(vectorP);
+    vectorPLine[index + 1] = vectorPNormalization;
+    vectorN                = VectorSubtraction(vectorP, vectorPLine);
+    vectorNNormalized      = NormalizingVector(vectorN);
 
-    HouseHolderMatrix = MatrixSubtraction(HouseHolderMatrix, MatrixValueMultiplication(
-            VectorTranposeVectorMultiplication(VectorNNormalized, VectorNNormalized),2));
-    return HouseHolderMatrix;
+    houseHolderMatrix = MatrixSubtraction(houseHolderMatrix, MatrixValueMultiplication(
+            VectorTranposeVectorMultiplication(vectorNNormalized, vectorNNormalized),2));
+    return houseHolderMatrix;
 }
 
 /// Calcula a matriz de HouseHolder e a matriz tridiagonal
-/// \param Matrix
+/// \param matrix
 /// \return struct com a Matriz de HouseHolder e a Matriz tridiagonal
-struct HouseHolderAnswer HouseHolderMethod(double **Matrix){
-    double **HouseHolderMatrix = MatrixAlocation(Lines, Columns);
-    double **HouseHolderMatrixAux;
+struct HouseHolderAnswer HouseHolderMethod(double **matrix){
+    double **houseHolderMatrix = MatrixAlocation(lines, columns);
+    double **houseHolderMatrixAux;
 
-    struct HouseHolderAnswer HouseHolderAnswer;
+    struct HouseHolderAnswer houseHolderAnswer;
 
-    MakeIdentityMatrix(HouseHolderMatrix);
-    for (int i = 0; i < Columns - 2 ; ++i) {
-        HouseHolderMatrixAux = ConstructHouseHolder(Matrix, i);
-        Matrix               = MatrixMultiplication(HouseHolderMatrixAux, MatrixMultiplication(Matrix,
-                                                                                               HouseHolderMatrixAux));
-        HouseHolderMatrix    = MatrixMultiplication(HouseHolderMatrix, HouseHolderMatrixAux);
+    MakeIdentityMatrix(houseHolderMatrix);
+    for (int i = 0; i < columns - 2 ; ++i) {
+        houseHolderMatrixAux = ConstructHouseHolder(matrix, i);
+        matrix               = MatrixMultiplication(houseHolderMatrixAux, MatrixMultiplication(matrix,
+                                                                                               houseHolderMatrixAux));
+        houseHolderMatrix    = MatrixMultiplication(houseHolderMatrix, houseHolderMatrixAux);
     }
 
-    HouseHolderAnswer.HouseHolderMatrix = HouseHolderMatrix;
-    HouseHolderAnswer.TridiagonalMatrix = Matrix;
-    return HouseHolderAnswer;
+    houseHolderAnswer.houseHolderMatrix = houseHolderMatrix;
+    houseHolderAnswer.tridiagonalMatrix = matrix;
+    return houseHolderAnswer;
 }
 
 /// Calcula o maior autovalor pelo metodo da potencia regular
-/// \param Matrix        = Matriz Original
-/// \param InitialVector = Vetor chute
-/// \param Tolerance     = Tolerancia para o erro
+/// \param matrix        = Matriz Original
+/// \param initialVector = Vetor chute
+/// \param tolerance     = Tolerancia para o erro
 /// \return struct com o maior autovalor e o autovetor correspondente
-struct EigenValueVector RegularPow(double **Matrix, double *InitialVector, double Tolerance){
-    struct EigenValueVector Answer;
-    Answer.EigenVector = VectorAlocation();
-    double *q = NormalizingVector(InitialVector);
-    double Error;
-    double EigenValue;
-    double PreviousEigenValue = 0;
-    double *x = MatrixVectorMultiplication(Matrix, q);
+struct EigenValueVector RegularPow(double **matrix, double *initialVector, double tolerance){
+    struct EigenValueVector answer;
+    answer.eigenVector = VectorAlocation();
+    double *q = NormalizingVector(initialVector);
+    double error;
+    double eigenValue;
+    double previousEigenValue = 0;
+    double *x = MatrixVectorMultiplication(matrix, q);
 
     do{
         q = NormalizingVector(x);
-        x = MatrixVectorMultiplication(Matrix, q);
-        EigenValue = VectorMultiplication(q, x);
-        Error = fabs((EigenValue - PreviousEigenValue)/EigenValue);
-        PreviousEigenValue = EigenValue;
+        x = MatrixVectorMultiplication(matrix, q);
+        eigenValue = VectorMultiplication(q, x);
+        error = fabs((eigenValue - previousEigenValue)/eigenValue);
+        previousEigenValue = eigenValue;
     }
-    while (Error > Tolerance);
-    Answer.EigenValue = EigenValue;
-    Answer.EigenVector = x;
-    return Answer;
+    while (error > tolerance);
+    answer.eigenValue = eigenValue;
+    answer.eigenVector = q;
+    return answer;
 }
 
 /// Função que faz a decomposição LU e encontra a inversa da matriz
-/// \param Matrix = Matriz original
+/// \param matrix = Matriz original
 /// \return ponteiro para a inversa da Matriz original
-double** LUDecompositionForInverse(double **Matrix){
-    double              **L = MatrixAlocation(Lines, Columns);
-    double              **U = MatrixAlocation(Lines, Columns);
-    double              **Y = MatrixAlocation(Lines, Columns);
-    double **IdentityMatrix = MatrixAlocation(Lines, Columns);
-    double  **InverseMatrix = MatrixAlocation(Lines, Columns);
+double** LUDecompositionForInverse(double **matrix){
+    double              **l = MatrixAlocation(lines, columns);
+    double              **u = MatrixAlocation(lines, columns);
+    double              **y = MatrixAlocation(lines, columns);
+    double **identityMatrix = MatrixAlocation(lines, columns);
+    double  **inverseMatrix = MatrixAlocation(lines, columns);
 
-    //Decomposição LU -> Matriz = L * U
-    //Povoamento da Matriz identidade e das Matrizes L e U
-    MakeIdentityMatrix(IdentityMatrix);
+    //Decomposição LU -> Matriz = l * u
+    //Povoamento da Matriz identidade e das Matrizes l e u
+    MakeIdentityMatrix(identityMatrix);
 
     //Decomposição LU
-    for(int i = 0; i < Lines; i++) {
-        for(int j = 0; j < Columns; j++) {
-            L[i][j] = IdentityMatrix[i][j];
+    for(int i = 0; i < lines; i++) {
+        for(int j = 0; j < columns; j++) {
+            l[i][j] = identityMatrix[i][j];
 
             if(i <= j) {
-                U[i][j] = Matrix[i][j];
+                u[i][j] = matrix[i][j];
                 for(int k = 0; k < i; k++) {
-                    U[i][j] -= L[i][k] * U[k][j];
+                    u[i][j] -= l[i][k] * u[k][j];
                 }
             }
 
             else {
-                L[i][j] = Matrix[i][j];
+                l[i][j] = matrix[i][j];
                 for(int k = 0; k < j; k++){
-                    L[i][j] -= L[i][k] * U[k][j];
+                    l[i][j] -= l[i][k] * u[k][j];
                 }
-                L[i][j] /= U[j][j];
-                U[i][j]  = 0.0;
+                l[i][j] /= u[j][j];
+                u[i][j]  = 0.0;
             }
         }
     }
 
-    //Descobrindo o Y da formula para descobrir a Matriz inversa
-    // (Matriz * MatrizInversa = Identidade -> L * U * MatrizInversa = Identidade -> Y = U * MatrizInversa)
-    for(int c = 0; c < Columns; c++) {
-        for (int i = 0; i < Lines; ++i) {
-            Y[i][c] = IdentityMatrix[i][c];
+    //Descobrindo o y da formula para descobrir a Matriz inversa
+    // (Matriz * MatrizInversa = Identidade -> l * u * MatrizInversa = Identidade -> y = u * MatrizInversa)
+    for(int c = 0; c < columns; c++) {
+        for (int i = 0; i < lines; ++i) {
+            y[i][c] = identityMatrix[i][c];
             for(int k = 0; k < i; k++) {
-                Y[i][c] -= L[i][k] * Y[k][c];
+                y[i][c] -= l[i][k] * y[k][c];
             }
         }
     }
 
     //Descobrindo a MatrizInversa
-    for(int c = 0; c < Columns; c++) {
-        for (int i = Lines - 1; i >= 0; --i) {
-            InverseMatrix[i][c] = Y[i][c];
-            for(int k = i + 1; k < Lines; k++) {
-                InverseMatrix[i][c] -= U[i][k] * InverseMatrix[k][c];
+    for(int c = 0; c < columns; c++) {
+        for (int i = lines - 1; i >= 0; --i) {
+            inverseMatrix[i][c] = y[i][c];
+            for(int k = i + 1; k < lines; k++) {
+                inverseMatrix[i][c] -= u[i][k] * inverseMatrix[k][c];
             }
-            InverseMatrix[i][c] /= U[i][i];
+            inverseMatrix[i][c] /= u[i][i];
         }
     }
-    return InverseMatrix;
+    return inverseMatrix;
 }
 
 /// Funçao que calcula o maior autovalor pelo o metodo da potencia inversa
-/// \param Matrix        = Matriz original
-/// \param InitialVector = Vetor chute
-/// \param Tolerance     = Tolerancia para o erro
+/// \param matrix        = Matriz original
+/// \param initialVector = Vetor chute
+/// \param tolerance     = Tolerancia para o erro
 /// \return struct com o maior autovalor e o autovetor correspondente
-struct EigenValueVector InversePow(double **Matrix, double *InitialVector, double Tolerance){
-    struct EigenValueVector Answer;
-    struct EigenValueVector RegularPowAnswer;
-    double **InverseMatrix = LUDecompositionForInverse(Matrix);
+struct EigenValueVector InversePow(double **matrix, double *initialVector, double tolerance){
+    struct EigenValueVector answer;
+    struct EigenValueVector regularPowAnswer;
+    double **inverseMatrix = LUDecompositionForInverse(matrix);
 
-    RegularPowAnswer   = RegularPow(InverseMatrix, InitialVector, Tolerance);
-    Answer.EigenValue  = 1/RegularPowAnswer.EigenValue;
-    Answer.EigenVector = RegularPowAnswer.EigenVector;
-    return Answer;
+    regularPowAnswer   = RegularPow(inverseMatrix, initialVector, tolerance);
+    answer.eigenValue  = 1/regularPowAnswer.eigenValue;
+    answer.eigenVector = regularPowAnswer.eigenVector;
+    return answer;
 }
 
 /// Metodo da Potencia com deslocamento
-/// \param Matrix
-/// \param InitialVector
-/// \param Tolerance
-/// \param Displacement
+/// \param matrix
+/// \param initialVector
+/// \param tolerance
+/// \param displacement
 /// \return uma struct com o autovalor com o deslocamento e o autovetor
-struct EigenValueVector DisplacementPow(double **Matrix, double *InitialVector, double Tolerance,
-                                        double Displacement){
-    double **IdentityMatrix = MatrixAlocation(Lines, Columns);
-    double **DisplacementMatrix;
-    double **DisplacementIdentityMultiplication;
+struct EigenValueVector DisplacementPow(double **matrix, double *initialVector, double tolerance,
+                                        double displacement){
+    double **identityMatrix = MatrixAlocation(lines, columns);
+    double **displacementMatrix;
+    double **displacementIdentityMultiplication;
 
-    struct EigenValueVector Answer;
-    struct EigenValueVector InversePowAnswer;
+    struct EigenValueVector answer;
+    struct EigenValueVector inversePowAnswer;
 
-    MakeIdentityMatrix(IdentityMatrix);
-    DisplacementIdentityMultiplication = MatrixValueMultiplication(IdentityMatrix, Displacement);
-    DisplacementMatrix                 = MatrixSubtraction(Matrix, DisplacementIdentityMultiplication);
-    InversePowAnswer                   = InversePow(DisplacementMatrix, InitialVector, Tolerance);
-    Answer.EigenValue                  = Displacement + InversePowAnswer.EigenValue;
-    Answer.EigenVector                 = InversePowAnswer.EigenVector;
-    return Answer;
+    MakeIdentityMatrix(identityMatrix);
+    displacementIdentityMultiplication = MatrixValueMultiplication(identityMatrix, displacement);
+    displacementMatrix                 = MatrixSubtraction(matrix, displacementIdentityMultiplication);
+    inversePowAnswer                   = InversePow(displacementMatrix, initialVector, tolerance);
+    answer.eigenValue                  = displacement + inversePowAnswer.eigenValue;
+    answer.eigenVector                 = inversePowAnswer.eigenVector;
+    return answer;
 }
 
 /// Constroi a matriz de jacobi para zerar os valores abaixo da diagonal principal no método QR
-/// \param Matrix
-/// \param Index
+/// \param matrix
+/// \param index
 /// \return Matriz de jacobi
-double** ConstructJacobianMatrixTranspose(double **Matrix, int Index){
-    double **JacobianMatrix = MatrixAlocation(Lines, Columns);
-    double      TetaTangent = Matrix[Index + 1][Index]/Matrix[Index][Index];
-    double             Teta = atan(TetaTangent);
+double** ConstructJacobianMatrixTranspose(double **matrix, int index){
+    double **jacobianMatrix = MatrixAlocation(lines, columns);
+    double      tetaTangent = matrix[index + 1][index]/matrix[index][index];
+    double             teta = atan(tetaTangent);
 
-    MakeIdentityMatrix(JacobianMatrix);
+    MakeIdentityMatrix(jacobianMatrix);
 
-    JacobianMatrix [Index]     [Index]     =  cos(Teta);
-    JacobianMatrix [Index]     [Index+1]   =  sin(Teta);
-    JacobianMatrix [Index + 1] [Index]     = -sin(Teta);
-    JacobianMatrix [Index + 1] [Index + 1] =  cos(Teta);
+    jacobianMatrix [index]     [index]     =  cos(teta);
+    jacobianMatrix [index]     [index+1]   =  sin(teta);
+    jacobianMatrix [index + 1] [index]     = -sin(teta);
+    jacobianMatrix [index + 1] [index + 1] =  cos(teta);
 
-    return JacobianMatrix;
+    return jacobianMatrix;
 }
 
 /// Faz a decomposição da Matriz em duas matrizes uma Q e outra R
-/// \param Matrix
+/// \param matrix
 /// \return struct com as duas matrizes(Q e R)
-struct QRMatrix QRDecomposition(double **Matrix){
-    struct QRMatrix QRAnswer;
-    double **QMatrixTranspose = MatrixAlocation(Lines, Columns);
-    double **QMatrix;
-    double **RMatrix;
-    double **JacobianMatrixTranspose;
+struct QRMatrix QRDecomposition(double **matrix){
+    struct QRMatrix qrAnswer;
+    double **qMatrixTranspose = MatrixAlocation(lines, columns);
+    double **qMatrix;
+    double **rMatrix;
+    double **jacobianMatrixTranspose;
 
-    MakeIdentityMatrix(QMatrixTranspose);
-    for (int i = 0; i < Lines - 1 ; ++i) {
+    MakeIdentityMatrix(qMatrixTranspose);
+    for (int i = 0; i < lines - 1 ; ++i) {
 
-        JacobianMatrixTranspose = ConstructJacobianMatrixTranspose(Matrix, i);
-        Matrix                  = MatrixMultiplication(JacobianMatrixTranspose, Matrix);
-        QMatrixTranspose        = MatrixMultiplication(JacobianMatrixTranspose, QMatrixTranspose);
+        jacobianMatrixTranspose = ConstructJacobianMatrixTranspose(matrix, i);
+        matrix                  = MatrixMultiplication(jacobianMatrixTranspose, matrix);
+        qMatrixTranspose        = MatrixMultiplication(jacobianMatrixTranspose, qMatrixTranspose);
 
     }
-    QMatrix          = MatrixTranspose(QMatrixTranspose);
-    RMatrix          = Matrix;
-    QRAnswer.QMatrix = QMatrix;
-    QRAnswer.RMatrix = RMatrix;
+    qMatrix          = MatrixTranspose(qMatrixTranspose);
+    rMatrix          = matrix;
+    qrAnswer.qMatrix = qMatrix;
+    qrAnswer.rMatrix = rMatrix;
 
-    return QRAnswer;
+    return qrAnswer;
 }
 
 /// Calcula auto valor e auto vetor pelo metodo QR
-/// \param Matrix
-/// \param Tolerance
+/// \param matrix
+/// \param tolerance
 /// \return Struct com o autovalor e o autovetor
-struct SetOfEigenValueVector QRMethod(double **Matrix, double Tolerance){
-    double **X;
-    double **A;
-    double **AWithoutDiagonal;
-    double **DiagonalMatrix;
-    double Normalization;
-    double *EigenValues = VectorAlocation();
+struct SetOfEigenValueVector QRMethod(double **matrix, double tolerance){
+    double **x;
+    double **a;
+    double **aWithoutDiagonal;
+    double **diagonalMatrix;
+    double normalization;
+    double *eigenValues = VectorAlocation();
 
-    struct HouseHolderAnswer HouseHolderAnswer;
-    struct QRMatrix QRAnswer;
-    struct SetOfEigenValueVector SetOfEigenValueVectorAnswer;
+    struct HouseHolderAnswer houseHolderAnswer;
+    struct QRMatrix qrAnswer;
+    struct SetOfEigenValueVector setOfEigenValueVectorAnswer;
 
-    HouseHolderAnswer = HouseHolderMethod(Matrix);
-    X = HouseHolderAnswer.HouseHolderMatrix;
-    A = HouseHolderAnswer.TridiagonalMatrix;
+    houseHolderAnswer = HouseHolderMethod(matrix);
+    x = houseHolderAnswer.houseHolderMatrix;
+    a = houseHolderAnswer.tridiagonalMatrix;
 
     do{
-        QRAnswer = QRDecomposition(A);
+        qrAnswer = QRDecomposition(a);
 
-        A = MatrixMultiplication(QRAnswer.RMatrix, QRAnswer.QMatrix);
-        X = MatrixMultiplication(X, QRAnswer.QMatrix);
+        a = MatrixMultiplication(qrAnswer.rMatrix, qrAnswer.qMatrix);
+        x = MatrixMultiplication(x, qrAnswer.qMatrix);
 
-        DiagonalMatrix   = MakeDiagonalMatrix(A);
-        AWithoutDiagonal = MatrixSubtraction(A, DiagonalMatrix);
-        Normalization    = MatrixEuclidianNormalization(AWithoutDiagonal);
+        diagonalMatrix   = MakeDiagonalMatrix(a);
+        aWithoutDiagonal = MatrixSubtraction(a, diagonalMatrix);
+        normalization    = MatrixEuclidianNormalization(aWithoutDiagonal);
 
     }
 
-    while(Normalization > Tolerance);
-    for (int i = 0; i < VectorSize; ++i) {
-        EigenValues[i] = DiagonalMatrix[i][i];
+    while(normalization > tolerance);
+    for (int i = 0; i < vectorSize; ++i) {
+        eigenValues[i] = diagonalMatrix[i][i];
     }
 
-    SetOfEigenValueVectorAnswer.EigenVectors = X;
-    PrintMatrix(X);
-    SetOfEigenValueVectorAnswer.EigenValues  = EigenValues;
+    setOfEigenValueVectorAnswer.eigenVectors = x;
+    setOfEigenValueVectorAnswer.eigenValues  = eigenValues;
 
-    return SetOfEigenValueVectorAnswer;
+    return setOfEigenValueVectorAnswer;
 }
 
 
 int main() {
-    struct EigenValueVector           AnswerRegularPow;
-    struct EigenValueVector           AnswerInversePow;
-    struct EigenValueVector      AnswerDisplacementPow;
-    struct SetOfEigenValueVector              AnswerQr;
+    struct EigenValueVector           answerRegularPow;
+    struct EigenValueVector           answerInversePow;
+    struct EigenValueVector      answerDisplacementPow;
+    struct SetOfEigenValueVector              answerQr;
 
-    double       **Matrix = MatrixAlocation(Lines, Columns);
-    double      Tolerance = 0.001;
-    double *InitialVector = (double*)malloc(VectorSize * sizeof(double*));
+    double       **matrix = MatrixAlocation(lines, columns);
+    double      tolerance = 0.001;
+    double *initialVector = (double*)malloc(vectorSize * sizeof(double*));
+    double   displacement = 5.0;
 
-    int      Displacement = 5;
+    initialVector[0] = 1.0;
+    initialVector[1] = 1.0;
+    initialVector[2] = 1.0;
 
-    InitialVector[0] = 1.0;
-    InitialVector[1] = 1.0;
-    InitialVector[2] = 1.0;
+    matrix[0][0] =  4.0;
+    matrix[0][1] = -1.0;
+    matrix[0][2] =  1.0;
 
-    Matrix[0][0] =  4.0;
-    Matrix[0][1] = -1.0;
-    Matrix[0][2] =  1.0;
+    matrix[1][0] = -1.0;
+    matrix[1][1] =  3.0;
+    matrix[1][2] = -2.0;
 
-    Matrix[1][0] = -1.0;
-    Matrix[1][1] =  3.0;
-    Matrix[1][2] = -2.0;
+    matrix[2][0] =  1.0;
+    matrix[2][1] = -2.0;
+    matrix[2][2] =  3.0;
 
-    Matrix[2][0] =  1.0;
-    Matrix[2][1] = -2.0;
-    Matrix[2][2] =  3.0;
+    answerRegularPow = RegularPow(matrix, initialVector, tolerance);
+    printf("Regular Pow eigenValue: %f\n\n", answerRegularPow.eigenValue);
 
-    AnswerRegularPow = RegularPow(Matrix, InitialVector, Tolerance);
-    printf("Regular Pow: %f\n", AnswerRegularPow.EigenValue);
+    answerInversePow = InversePow(matrix, initialVector, tolerance);
+    printf("Inverse Pow eigenValue: %f\n\n", answerInversePow.eigenValue);
 
-    AnswerInversePow = InversePow(Matrix, InitialVector, Tolerance);
-    printf("Inverse Pow: %f\n", AnswerInversePow.EigenValue);
+    answerDisplacementPow = DisplacementPow(matrix, initialVector, tolerance, displacement);
+    printf("Displacement Pow eigenValue: %f\n\n", answerDisplacementPow.eigenValue);
 
-    AnswerDisplacementPow = DisplacementPow(Matrix, InitialVector, Tolerance, Displacement);
-    printf("Displacement Pow: %f\n", AnswerDisplacementPow.EigenValue);
+    answerQr = QRMethod(matrix, tolerance);
+    printf("QrMethod last eigenValue: %f\n\n", answerQr.eigenValues[0]);
 
-    AnswerQr = QRMethod(Matrix, Tolerance);
-    printf("QrMethod First EigenValue: %f\n", AnswerQr.EigenValues[0]);
-
-    //PrintMatrix(HouseHolderMethod(Matrix).HouseHolderMatrix);
+    printf("HouseHolder matrix:\n");
+    PrintMatrix(HouseHolderMethod(matrix).houseHolderMatrix);
 
     system("pause");
     return 0;

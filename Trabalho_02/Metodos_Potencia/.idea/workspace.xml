@@ -13,6 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="930c99af-64ec-49c5-86d0-be165279f692" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/main.c.obj" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Trabalho_02.dir/objects.a" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/Trabalho_02.exe" />
       <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -39,8 +42,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="45" column="17" lean-forward="false" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+            <state relative-caret-position="-2862">
+              <caret line="65" column="1" lean-forward="true" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -72,6 +75,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
@@ -161,7 +165,9 @@
       <workItem from="1525384883924" duration="10299000" />
       <workItem from="1525899800441" duration="13449000" />
       <workItem from="1525990122095" duration="10049000" />
-      <workItem from="1526006802293" duration="404000" />
+      <workItem from="1526006802293" duration="9236000" />
+      <workItem from="1526139117768" duration="3731000" />
+      <workItem from="1526143483550" duration="78000" />
     </task>
     <task id="LOCAL-00001" summary="Decomposicao LU OK Matriz Inversa OK">
       <created>1524600045215</created>
@@ -261,11 +267,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526000302657</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Finalizado Versão 2.0">
+      <created>1526007218073</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1526007218073</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75418000" />
+    <option name="totallyTimeSpent" value="88059000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -313,16 +326,42 @@
     <MESSAGE value="Adicionando função para imprimir vetor" />
     <MESSAGE value="Finalizado Versão 1.0" />
     <MESSAGE value="Finalizado Versão 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalizado Versão 2.0" />
+    <MESSAGE value="Finalizado Versão 3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalizado Versão 3.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="44" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>vectorP[]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>vectorP[3]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>vectorP[2]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>vectorP[1]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>vectorP[0]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>answerDisplacementPow.eigenVector[2]</expression-string>
         <language-id>ObjectiveC</language-id>
@@ -348,29 +387,45 @@
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>answerRegularPow.eigenVector[0]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>AnswerInversePow.EigenVector[2]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>AnswerInversePow.EigenVector[1]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>AnswerInversePow.EigenVector[0]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10115">
+          <caret line="595" column="0" lean-forward="true" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7089">
+          <caret line="417" column="54" lean-forward="false" selection-start-line="417" selection-start-column="54" selection-end-line="417" selection-end-column="54" />
+          <folding>
+            <element signature="e#39#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -599,8 +654,8 @@
     <entry file="file://$PROJECT_DIR$/../../../../../metodoPotenciaReg.cpp" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="45" column="17" lean-forward="false" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+        <state relative-caret-position="-2862">
+          <caret line="65" column="1" lean-forward="true" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
           </folding>

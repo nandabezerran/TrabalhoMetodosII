@@ -26,9 +26,9 @@ struct QRMatrix{
 
 //Definição do tamanho da matriz e do vetor
 
-int columns    = 3;
-int lines      = 3;
-int vectorSize = 3;
+int columns    = 4;
+int lines      = 4;
+int vectorSize = 4;
 
 //Foi utilizada a normalização euclidiana
 
@@ -271,6 +271,7 @@ double** ConstructHouseHolder(double **matrix, int index){
     double     *vectorNNormalized;
     double   vectorPNormalization;
 
+    //TODO função
     for (int l = 0; l < lines ; ++l) {
         vectorP[l]     = 0;
         vectorPLine[l] = 0;
@@ -278,17 +279,28 @@ double** ConstructHouseHolder(double **matrix, int index){
 
     MakeIdentityMatrix(houseHolderMatrix);
 
-    for (int i = index + 1; i < lines ; ++i) {
+    for (int i = index + 1; i < vectorSize ; ++i) {
         vectorP[i] = matrix[i][index];
     }
 
     vectorPNormalization   = EuclidianNormalization(vectorP);
-    vectorPLine[index + 1] = vectorPNormalization;
+
+
+    //TODO função
+    if(vectorP[index + 1] > 0){
+        vectorPLine[index + 1] = vectorPNormalization * -1.0;
+    }
+
+    else {
+        vectorPLine[index + 1] = vectorPNormalization;
+    }
+
     vectorN                = VectorSubtraction(vectorP, vectorPLine);
     vectorNNormalized      = NormalizingVector(vectorN);
 
     houseHolderMatrix = MatrixSubtraction(houseHolderMatrix, MatrixValueMultiplication(
             VectorTranposeVectorMultiplication(vectorNNormalized, vectorNNormalized),2));
+
     return houseHolderMatrix;
 }
 
@@ -305,8 +317,9 @@ struct HouseHolderAnswer HouseHolderMethod(double **matrix){
     for (int i = 0; i < columns - 2 ; ++i) {
         houseHolderMatrixAux = ConstructHouseHolder(matrix, i);
         matrix               = MatrixMultiplication(houseHolderMatrixAux, MatrixMultiplication(matrix,
-                                                                                               houseHolderMatrixAux));
+                                                                                                houseHolderMatrixAux));
         houseHolderMatrix    = MatrixMultiplication(houseHolderMatrix, houseHolderMatrixAux);
+
     }
 
     houseHolderAnswer.houseHolderMatrix = houseHolderMatrix;
@@ -512,7 +525,6 @@ struct SetOfEigenValueVector QRMethod(double **matrix, double tolerance){
 
         a = MatrixMultiplication(qrAnswer.rMatrix, qrAnswer.qMatrix);
         x = MatrixMultiplication(x, qrAnswer.qMatrix);
-
         diagonalMatrix   = MakeDiagonalMatrix(a);
         aWithoutDiagonal = MatrixSubtraction(a, diagonalMatrix);
         normalization    = MatrixEuclidianNormalization(aWithoutDiagonal);
@@ -545,34 +557,55 @@ int main() {
     initialVector[0] = 1.0;
     initialVector[1] = 1.0;
     initialVector[2] = 1.0;
+    initialVector[3] = 1.0;
 
     matrix[0][0] =  4.0;
-    matrix[0][1] = -1.0;
-    matrix[0][2] =  1.0;
+    matrix[0][1] =  1.0;
+    matrix[0][2] = -2.0;
+    matrix[0][3] =  2.0;
 
-    matrix[1][0] = -1.0;
-    matrix[1][1] =  3.0;
-    matrix[1][2] = -2.0;
+    matrix[1][0] =  1.0;
+    matrix[1][1] =  2.0;
+    matrix[1][2] =  0.0;
+    matrix[1][3] =  1.0;
 
-    matrix[2][0] =  1.0;
-    matrix[2][1] = -2.0;
+    matrix[2][0] = -2.0;
+    matrix[2][1] =  0.0;
     matrix[2][2] =  3.0;
+    matrix[2][3] = -2.0;
+
+    matrix[3][0] =  2.0;
+    matrix[3][1] =  1.0;
+    matrix[3][2] = -2.0;
+    matrix[3][3] = -1.0;
 
     answerRegularPow = RegularPow(matrix, initialVector, tolerance);
-    printf("Regular Pow eigenValue: %f\n\n", answerRegularPow.eigenValue);
+    printf("Regular Pow eigenValue : %f\n\n", answerRegularPow.eigenValue);
+    printf("Regular Pow eigenVector: \n\n");
+    PrintVector(answerRegularPow.eigenVector);
 
     answerInversePow = InversePow(matrix, initialVector, tolerance);
     printf("Inverse Pow eigenValue: %f\n\n", answerInversePow.eigenValue);
+    printf("Inverse Pow eigenVector: \n\n");
+    PrintVector(answerInversePow.eigenVector);
 
     answerDisplacementPow = DisplacementPow(matrix, initialVector, tolerance, displacement);
     printf("Displacement Pow eigenValue: %f\n\n", answerDisplacementPow.eigenValue);
-
-    answerQr = QRMethod(matrix, tolerance);
-    printf("QrMethod last eigenValue: %f\n\n", answerQr.eigenValues[0]);
+    printf("Displacement Pow eigenVector: \n\n");
+    PrintVector(answerDisplacementPow.eigenVector);
 
     printf("HouseHolder matrix:\n");
     PrintMatrix(HouseHolderMethod(matrix).houseHolderMatrix);
+    printf("Tridiagonal matrix:\n");
+    PrintMatrix(HouseHolderMethod(matrix).tridiagonalMatrix);
+
+    answerQr = QRMethod(matrix, tolerance);
+    printf("QrMethod last eigenValue: \n");
+    PrintVector(answerQr.eigenValues);
+    printf("QrMethod eigenVectors: \n");
+    PrintMatrix(answerQr.eigenVectors);
 
     system("pause");
     return 0;
+
 }

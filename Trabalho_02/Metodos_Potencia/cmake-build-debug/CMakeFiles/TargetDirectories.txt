@@ -1,3 +1,0 @@
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_02/Metodos_Potencia/cmake-build-debug/CMakeFiles/Trabalho_02.dir
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_02/Metodos_Potencia/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_02/Metodos_Potencia/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -39,6 +39,14 @@ double* VectorAllocation(){
     return vector;
 }
 
+/// Função para inicializar o vetor com 0
+/// \param vector
+void InitializeVector(double *vector) {
+    for (int l = 0; l < lines ; ++l) {
+        vector[l] = 0;
+    }
+}
+
 /// Função para alocação do espaço para uma Matriz
 /// \param lines = quantidade de linhas
 /// \param columns = quantidade de colunas
@@ -258,6 +266,21 @@ double** MatrixSubtraction(double **matrix1, double **matrix2){
     return resultingMatrix;
 }
 
+/// Função para checar os vetores e identificar se é necessário mudar o sinal
+/// \param index
+/// \param vectorP
+/// \param vectorPLine
+/// \param vectorPNormalization
+void SignalVerification(int index, const double *vectorP, double *vectorPLine, double vectorPNormalization) {
+    if(vectorP[index + 1] > 0){
+        vectorPLine[index + 1] = vectorPNormalization * -1.0;
+    }
+
+    else {
+        vectorPLine[index + 1] = vectorPNormalization;
+    }
+}
+
 /// Construção da matriz de householder
 /// \param matrix
 /// \param index
@@ -271,11 +294,8 @@ double** ConstructHouseHolder(double **matrix, int index){
     double     *vectorNNormalized;
     double   vectorPNormalization;
 
-    //TODO função
-    for (int l = 0; l < lines ; ++l) {
-        vectorP[l]     = 0;
-        vectorPLine[l] = 0;
-    }
+    InitializeVector(vectorP);
+    InitializeVector(vectorPLine);
 
     MakeIdentityMatrix(houseHolderMatrix);
 
@@ -283,17 +303,9 @@ double** ConstructHouseHolder(double **matrix, int index){
         vectorP[i] = matrix[i][index];
     }
 
-    vectorPNormalization   = EuclidianNormalization(vectorP);
+    vectorPNormalization = EuclidianNormalization(vectorP);
 
-
-    //TODO função
-    if(vectorP[index + 1] > 0){
-        vectorPLine[index + 1] = vectorPNormalization * -1.0;
-    }
-
-    else {
-        vectorPLine[index + 1] = vectorPNormalization;
-    }
+    SignalVerification(index, vectorP, vectorPLine, vectorPNormalization);
 
     vectorN                = VectorSubtraction(vectorP, vectorPLine);
     vectorNNormalized      = NormalizingVector(vectorN);
@@ -303,6 +315,7 @@ double** ConstructHouseHolder(double **matrix, int index){
 
     return houseHolderMatrix;
 }
+
 
 /// Calcula a matriz de HouseHolder e a matriz tridiagonal
 /// \param matrix

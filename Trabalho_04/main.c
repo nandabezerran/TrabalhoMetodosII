@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+typedef struct node node;
 
+typedef struct element element;
 /// Define a função que iremos utilizar para o método
 /// \param x
 /// \param y
@@ -10,6 +12,20 @@
 double Function(double x, double y){
     return (1 - x * y);
 }
+
+///Definição de Structs para o método de eliminação finita
+struct node{
+    double coordinate;
+    int    id;
+};
+
+struct element{
+    node    nodes[2];
+    double **kMatrix;
+    double  *fvector;
+    double  *gvector;
+};
+
 
 /// Calcula equações diferenciais ordinarias pelo metodo de Forward Euler recebendo um valor inicial
 /// \param initialPosition
@@ -191,13 +207,13 @@ int main() {
     int           rangeKuttaOrder = 2;
     int   predictorCorrectorOrder = 3;
 
-    printf("Forward Euler result: %f\n",ForwardEuler(initialPosition,intialTime,wantedTime,step));
+    //printf("Forward Euler result: %f\n",ForwardEuler(initialPosition,intialTime,wantedTime,step));
 
-    printf("%d Order Runge-Kutta result: %f\n",rangeKuttaOrder,
-           RangeKutta(initialPosition,intialTime,wantedTime,step,rangeKuttaOrder));
+    //printf("%d Order Runge-Kutta result: %f\n",rangeKuttaOrder,
+          // RangeKutta(initialPosition,intialTime,wantedTime,step,rangeKuttaOrder));
 
-    printf("%d Order Predictor-Corrector result: %f\n",predictorCorrectorOrder,PredictorCorrectorMethod
-                                                (initialPosition,intialTime, wantedTime,step, predictorCorrectorOrder));
+    //printf("%d Order Predictor-Corrector result: %f\n",predictorCorrectorOrder,PredictorCorrectorMethod
+                                                //(initialPosition,intialTime, wantedTime,step, predictorCorrectorOrder));
 
 
     system("pause");

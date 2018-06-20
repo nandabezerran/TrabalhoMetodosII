@@ -1,13 +1,18 @@
 //FERNANDA BEZERRA NASCIMENTO - SEGUNDA QUESTÃO - MATRÍCULA: 388834 - MÉTODOS NUMÉRICOS II
 #include <stdio.h>
 #include <math.h>
-#include <tgmath.h>
+#include <stdlib.h>
 
+/// Função para calcular a função inserida
+/// \param x
+/// \return resultado da função
 double fun (double x){
     //Para uma função diferente para integral, edite a linha abaixo
-    return cos(x);
+    return (double)cos(x);
 }
 
+/// Calculo da integral por gauss hermit 2 pontos
+/// \return integral
 double GaussHermit_2(){
     double intr = 0, w[2], x[2];
 
@@ -15,12 +20,14 @@ double GaussHermit_2(){
     w[1] = 0.88622;
     x[0] = -0.70710;
     x[1] = 0.70710;
-    for (int i = 1; i <= 2; i++){
+    for (int i = 0; i < 2; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Calculo da integral por gauss hermit 3 pontos
+/// \return integral
 double GaussHermit_3(){
     double intr = 0, w[3], x[3];
 
@@ -30,12 +37,14 @@ double GaussHermit_3(){
     x[0] = -1.22474;
     x[1] = 0;
     x[2] = 1.22474;
-    for (int i = 1; i <= 3; i++){
+    for (int i = 0; i < 3; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Calculo da integral por gauss hermit 4 pontos
+/// \return integral
 double GaussHermit_4(){
     double intr = 0, w[2], x[2];
 
@@ -47,12 +56,14 @@ double GaussHermit_4(){
     x[1] = -0.52464;
     x[2] = 0.524647;
     x[3] = 1.650680;
-    for (int i = 1; i <= 5; i++){
+    for (int i = 0; i < 5; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Calculo da integral por gauss laguerre 2 pontos
+/// \return integral
 double GaussLaguerre_2(){
     double intr = 0, w[2], x[2];
 
@@ -60,12 +71,14 @@ double GaussLaguerre_2(){
     w[1] = 0.14644;
     x[0] = 0.58578;
     x[1] = 3.41421;
-    for (int i = 1; i <= 2; i++){
+    for (int i = 0; i < 2; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Calculo da integral por gauss laguerre 3 pontos
+/// \return integral
 double GaussLaguerre_3(){
     double intr = 0, w[3], x[3];
 
@@ -75,35 +88,44 @@ double GaussLaguerre_3(){
     x[0] = 0.41577;
     x[1] = 2.29428;
     x[2] = 6.28994;
-    for (int i = 1; i <= 3; i++){
+    for (int i = 0; i < 3; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Calculo da integral por gauss laguerre 4 pontos
+/// \return integral
 double GaussLaguerre_4(){
-    double intr = 0, w[2], x[2];
+    double intr = 0, w[4], x[4];
 
     w[0] = 0.60315;
     w[1] = 0.35741;
     w[2] = 0.03888;
-    w[3] = 5.39294;
+    w[3] = 0.000539295;
     x[0] = 0.32254;
     x[1] = 1.74576;
     x[2] = 4.53662;
     x[3] = 9.39507;
-    for (int i = 1; i <= 5; i++){
+    for (int i = 0; i < 4; i++){
         intr += w[i] * (fun(x[i]));
     }
     return intr;
 }
 
+/// Função que utilizamos para a mudança de variável no gauss chebyshev
+/// \param k
+/// \param n
+/// \return valor de xk
 double fun_xk(int k, int n){
-    return cos(((k - 1/2)* M_PI)/n);
+    return cos(((k - (1.0/2))* M_PI)/n);
 }
 
+/// Calculo da integral por gauss chebyshev
+/// \param n = numero de pontos
+/// \return integral
 double GaussChebyshev(int n){
-    double intr = 0, w = M_PI/2;
+    double intr = 0, w = M_PI/n;
 
     for (int i = 1; i <= n; i++){
         intr += w * (fun(fun_xk(i,n)));
@@ -111,6 +133,9 @@ double GaussChebyshev(int n){
     return intr;
 }
 
+/// Função que recebe o número do método digitado pelo usuário e retorna  a integral pelo método desejado
+/// \param metodo = metodo desejado
+/// \return resultado da integral
 double integral (int metodo){
     if (metodo == 1){
         return GaussHermit_2 ();
@@ -132,6 +157,7 @@ double integral (int metodo){
     }
 
 }
+
 void main(int argc, char **argv){
     double a_b[6];
     int metodo;
@@ -151,8 +177,8 @@ void main(int argc, char **argv){
     scanf("%d", &metodo);
     if (metodo == 7){
         int n;
-        printf("Escolha o n:\n>>> ");
-        scanf("%d", n);
+        printf("Escolha o numero de pontos:\n>>> ");
+        scanf("%d", &n);
         printf("\n--------Resultado:---------\n");
         printf("%lf",GaussChebyshev (n));
 
@@ -162,4 +188,5 @@ void main(int argc, char **argv){
         printf("\n--------Resultado:---------\n");
         printf("%lf", integral(metodo));
     }
+    system("pause");
 }

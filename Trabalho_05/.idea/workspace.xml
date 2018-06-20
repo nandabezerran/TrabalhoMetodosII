@@ -12,13 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1408daf9-8dbe-4f5b-a95d-31f16f54e524" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/Trabalho_02.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/codeStyles/Project.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Trabalho_02/CMakeLists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/../Trabalho_02/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Trabalho_02/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -45,8 +39,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="227" column="16" lean-forward="false" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="16" />
+            <state relative-caret-position="425">
+              <caret line="241" column="39" lean-forward="false" selection-start-line="241" selection-start-column="39" selection-end-line="241" selection-end-column="39" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -73,7 +67,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -100,7 +94,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Trabalho_03" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Trabalho_01/Questao_01" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -146,14 +140,16 @@
       <workItem from="1528567104284" duration="25014000" />
       <workItem from="1528661425406" duration="3297000" />
       <workItem from="1529185315271" duration="1777000" />
+      <workItem from="1529518420139" duration="75000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33648000" />
+    <option name="totallyTimeSpent" value="33723000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16251831" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -237,6 +233,24 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3859">
+          <caret line="227" column="16" lean-forward="false" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="16" />
+          <folding>
+            <element signature="e#39#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -344,8 +358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="227" column="16" lean-forward="false" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="16" />
+        <state relative-caret-position="425">
+          <caret line="241" column="39" lean-forward="false" selection-start-line="241" selection-start-column="39" selection-end-line="241" selection-end-column="39" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
           </folding>

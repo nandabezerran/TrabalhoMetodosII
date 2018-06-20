@@ -1,6 +1,7 @@
 //FERNANDA BEZERRA NASCIMENTO - QUARTA QUESTÃO - MATRÍCULA: 388834 - MÉTODOS NUMÉRICOS II
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 const double ncPesos[8][5] = {
                 {1, 1,    0,    0,  0}, //Newton Cotes pesos fechados
@@ -30,15 +31,31 @@ const double glPesos[4][5] = {
 
 };
 
+/// Função para calcular a função inserida
+/// \param x
+/// \param y
+/// \return
 double fun(double x, double y) {
-    //Para uma função diferente para integral, edite a linha abaixo
     return x*y + (pow(x, 2.0) * pow(y, 3.0));
 }
 
+/// Função para efetuar a mudança de variável, no caso calculariámos X(alfa)
+/// \param x = o nosso alfa
+/// \param a = o nosso limite inferior do intervalo
+/// \param b = o nosso limite superior do intervalo
+/// \return x(alfa)
 double funXGl(const double x, double a, double b){
     return (((a + b)/2) + (x * ((a - b)/2)));
 }
 
+/// Calcular a integral dupla
+/// \param a
+/// \param b
+/// \param c
+/// \param d
+/// \param metodoX
+/// \param metodoY
+/// \return
 double calculoIntegralDupla(double a, double b,
                             double c, double d, int metodoX, int metodoY) {
     int dxGrau=0, dyGrau=0;
@@ -47,7 +64,7 @@ double calculoIntegralDupla(double a, double b,
     dxGrau = ((metodoX - 1)%4) + 1;
     dyGrau = ((metodoY - 1)%4) + 1;
 
-    int dxPointsNum = dxGrau + 1.0;
+    int dxPointsNum = dxGrau + 1;
     double pointsDx[dxPointsNum];
     double dxH;
 
@@ -88,6 +105,7 @@ double calculoIntegralDupla(double a, double b,
             pointsDy[j] = funXGl(glRaizes[dyGrau - 1][j], c, d);
         }
     }
+
     double result = 0.0;
     double weightX, weightY;
     for (int k = 0; k < dxPointsNum; ++k) {
@@ -111,6 +129,7 @@ double calculoIntegralDupla(double a, double b,
     }
     double multDx;
     double multDy;
+
     if (metodoX > 8 ){
         multDx = ((b-a)/2);
     }
@@ -129,6 +148,15 @@ double calculoIntegralDupla(double a, double b,
     return result;
 }
 
+/// Calcular a convergencia da integral dupla
+/// \param botY
+/// \param topY
+/// \param botX
+/// \param topX
+/// \param toler
+/// \param metodoX
+/// \param metodoY
+/// \return
 double convergenciaIntegralDupla(double botY, double topY, double botX, double topX, double toler, int metodoX,
                                  int metodoY) {
     double partNum = 1.0;
@@ -169,15 +197,18 @@ int main() {
 
     printf("Entre com o intervalo da integral de Y\n");
     printf("g1(x):>>> ");
-    scanf("%f",&botY);
+    //scanf("%f",&botY);
+    botY = 0;
     printf("g2(x):>>> ");
     scanf("%f",&topY);
 
     printf("Entre com o intervalo da integral de X\n");
     printf("a :>>> ");
-    scanf("%f",&botX);
+    //scanf("%f",&botX);
+    botX = 0;
     printf("b :>>> ");
     scanf("%f",&topX);
+    topX = M_PI/2;
 
 
     printf("Entre com a tolerância da integral de X\n");
@@ -198,4 +229,5 @@ int main() {
     printf("Método para dx:%d Método para dy:%d\nIntegral:\n>>> %f\n\n", metodoX, metodoY, resultado);
 
     return 0;
+    system("pause");
 }

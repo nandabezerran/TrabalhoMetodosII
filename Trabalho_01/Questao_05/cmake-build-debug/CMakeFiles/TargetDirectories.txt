@@ -1,0 +1,3 @@
+C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_01/Questao_05/cmake-build-debug/CMakeFiles/Questao_05.dir
+C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_01/Questao_05/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_01/Questao_05/cmake-build-debug/CMakeFiles/rebuild_cache.dir

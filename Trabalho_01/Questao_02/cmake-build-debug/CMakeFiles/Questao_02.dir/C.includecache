@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/fbeze/Desktop/Projetos_Metodos_II/Questao_02/main.c
+C:/Users/fbeze/Desktop/Faculdade/Metodos_Numericos_II/TrabalhoMetodosII/Trabalho_01/Questao_02/main.c
 stdio.h
 -
 math.h
 -
-tgmath.h
+stdlib.h
 -
 

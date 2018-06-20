@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-typedef struct node node;
 
-typedef struct element element;
 /// Define a função que iremos utilizar para o método
 /// \param x
 /// \param y
@@ -12,20 +10,6 @@ typedef struct element element;
 double Function(double x, double y){
     return (1 - x * y);
 }
-
-///Definição de Structs para o método de eliminação finita
-struct node{
-    double coordinate;
-    int    id;
-};
-
-struct element{
-    node    nodes[2];
-    double **kMatrix;
-    double  *fvector;
-    double  *gvector;
-};
-
 
 /// Calcula equações diferenciais ordinarias pelo metodo de Forward Euler recebendo um valor inicial
 /// \param initialPosition
@@ -157,8 +141,8 @@ double PredictorCorrectorMethod(double initialPosition, double initialTime, doub
             nextPosition = ForwardEuler(actualPosition, time, nextTime, step);
 
             //Fase 1: Predição
-            predictedPosition = nextPosition + step * ((-1 / 2) * Function(actualPosition, time) +
-                                                       (3 / 2) * Function(nextPosition, nextTime));
+            predictedPosition = nextPosition + step * ((-1.0 / 2) * Function(actualPosition, time) +
+                                                       (3.0 / 2) * Function(nextPosition, nextTime));
 
             //Fase 2: Correção
             correctedPosition = nextPosition + (step / 2) * (Function(actualPosition, nextTime) +
@@ -180,15 +164,44 @@ double PredictorCorrectorMethod(double initialPosition, double initialTime, doub
             nextNextPosition = ForwardEuler(nextPosition, nextTime, nextNextTime, step);
 
             //Fase 1: Predição
-            predictedPosition = nextPosition + ((step/12) * (5* Function(actualPosition, time) -
-                                                                         16 * Function(nextPosition, nextTime) +
-                                                                         23 * Function(nextNextPosition,nextNextTime)));
+            predictedPosition = nextPosition + ((step/12) * (5.0* Function(actualPosition, time) -
+                                                                         16.0 * Function(nextPosition, nextTime) +
+                                                                         23.0 * Function(nextNextPosition,nextNextTime)));
 
             //Fase 2: Correção
             correctedPosition = nextPosition + ((step / 12) * (- Function(nextPosition, nextTime) +
-                                                             8 * Function(nextNextPosition, nextNextTime) +
-                                                             5 * Function(predictedPosition, nextNextTime + step)));
+                                                             8.0 * Function(nextNextPosition, nextNextTime) +
+                                                             5.0 * Function(predictedPosition, nextNextTime + step)));
 
+            time           = time + step;
+            nextTime       = time + step;
+            nextNextTime   = nextTime + step;
+            actualPosition = correctedPosition;
+        }
+        return correctedPosition;
+    }
+
+    if (order == 4){
+        double nextNextPosition;
+        double nextNextNextPosition;
+        double nextNextTime = nextTime + step;
+        double nextNextNextTime = nextNextTime + step;
+        while (wantedTime > time){
+            //Fase 0: Inicialização
+            nextPosition = ForwardEuler(actualPosition, time, nextTime, step);
+            nextNextPosition = ForwardEuler(nextPosition, nextTime, nextNextTime, step);
+            nextNextNextPosition = ForwardEuler(nextNextPosition, nextNextTime, nextNextNextTime, step);
+
+            //Fase 1: Predição
+            predictedPosition = nextPosition + (step/24) * ((-9.0 * Function(actualPosition, nextTime))
+                                                              + (37.0 * Function(nextPosition, nextTime))
+                                                              + (-59.0 * Function(nextNextPosition,nextNextTime))
+                                                          + (55.0 * Function(nextNextNextPosition,nextNextNextPosition)));
+
+            //Fase 2: Correção
+            correctedPosition = nextPosition + (step/24) * (Function(nextPosition, nextTime) -5.0 * Function(nextNextPosition, nextNextTime)
+                                                        +19.0 * Function(nextNextNextPosition, nextNextNextTime)
+                                                        + 9.0 * Function(predictedPosition, nextNextNextTime + step));
             time           = time + step;
             nextTime       = time + step;
             nextNextTime   = nextTime + step;
@@ -201,19 +214,24 @@ double PredictorCorrectorMethod(double initialPosition, double initialTime, doub
 int main() {
     double initialPosition = 1;
     double      intialTime = 0;
-    double            step = 0.1;
-    double      wantedTime = 0.1;
+    double            step = 0.01;
+    double      wantedTime = 0.13;
 
-    int           rangeKuttaOrder = 2;
-    int   predictorCorrectorOrder = 3;
+    int           rangeKuttaOrder;
+    int   predictorCorrectorOrder;
 
-    //printf("Forward Euler result: %f\n",ForwardEuler(initialPosition,intialTime,wantedTime,step));
+    printf("Forward Euler result: %f\n",ForwardEuler(initialPosition,intialTime,wantedTime,step));
 
-    //printf("%d Order Runge-Kutta result: %f\n",rangeKuttaOrder,
-          // RangeKutta(initialPosition,intialTime,wantedTime,step,rangeKuttaOrder));
+    for (rangeKuttaOrder = 2; rangeKuttaOrder <= 4; ++rangeKuttaOrder) {
+        printf("%d Order Runge-Kutta result: %f\n",rangeKuttaOrder,
+               RangeKutta(initialPosition,intialTime,wantedTime,step,rangeKuttaOrder));
+    }
 
-    //printf("%d Order Predictor-Corrector result: %f\n",predictorCorrectorOrder,PredictorCorrectorMethod
-                                                //(initialPosition,intialTime, wantedTime,step, predictorCorrectorOrder));
+
+    for (predictorCorrectorOrder = 2; predictorCorrectorOrder < 5; ++predictorCorrectorOrder) {
+        printf("%d Order Predictor-Corrector result: %f\n",predictorCorrectorOrder,PredictorCorrectorMethod
+                (initialPosition,intialTime, wantedTime,step, predictorCorrectorOrder));
+    }
 
 
     system("pause");

@@ -12,107 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7455f9fa-0440-42b5-be03-fcca4a5ae5fe" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_02/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_03/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/.idea/Questao_05.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/.idea/codeStyles/Project.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/CMakeLists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../Questao_05/main.c" />
       <change beforePath="$PROJECT_DIR$/../Questao_01/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Questao_01/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeCache.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Makefile.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/C.includecache" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/C.includecache" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/build.make" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/depend.internal" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/depend.internal" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/main.c.obj" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/main.c.obj" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/objects.a" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/Questao_01.dir/objects.a" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/CMakeFiles/feature_tests.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Questao_01.cbp" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Questao_01.cbp" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Questao_01.exe" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/Questao_01.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/../Questao_01/cmake-build-debug/cmake_install.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_01/main.c" afterPath="$PROJECT_DIR$/../Questao_01/main.c" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Questao_02/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeCache.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/C.includecache" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/C.includecache" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/build.make" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/depend.internal" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/depend.internal" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/main.c.obj" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/main.c.obj" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/objects.a" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/Questao_02.dir/objects.a" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/CMakeFiles/feature_tests.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Questao_02.cbp" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Questao_02.cbp" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Questao_02.exe" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/Questao_02.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/../Questao_02/cmake-build-debug/cmake_install.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_02/main.c" afterPath="$PROJECT_DIR$/../Questao_02/main.c" />
       <change beforePath="$PROJECT_DIR$/../Questao_03/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Questao_03/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeCache.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/C.includecache" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/C.includecache" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/build.make" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/depend.internal" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/depend.internal" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/main.c.obj" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/main.c.obj" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/objects.a" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/Questao_03.dir/objects.a" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/CMakeFiles/feature_tests.bin" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Questao_03.cbp" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Questao_03.cbp" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Questao_03.exe" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/Questao_03.exe" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/../Questao_03/cmake-build-debug/cmake_install.cmake" />
-      <change beforePath="$PROJECT_DIR$/../Questao_03/main.c" afterPath="$PROJECT_DIR$/../Questao_03/main.c" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeDetermineCompilerABI_C.bin" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CMakeSystem.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.9.6/CompilerIdC/a.exe" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/C.includecache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/depend.internal" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/depend.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/main.c.obj" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Questao_04.dir/objects.a" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Questao_04.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Questao_04.cbp" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" />
-      <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
-      <change beforePath="$PROJECT_DIR$/../../Trabalho_02/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Trabalho_02/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../../Trabalho_05/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Trabalho_05/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../Questao_05/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Questao_05/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../../Trabalho_04/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Trabalho_04/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/CMakeFiles/Trabalho_04.dir/main.c.obj" afterPath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/CMakeFiles/Trabalho_04.dir/main.c.obj" />
+      <change beforePath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/CMakeFiles/Trabalho_04.dir/objects.a" afterPath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/CMakeFiles/Trabalho_04.dir/objects.a" />
+      <change beforePath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/Trabalho_04.exe" afterPath="$PROJECT_DIR$/../../Trabalho_04/cmake-build-debug/Trabalho_04.exe" />
+      <change beforePath="$PROJECT_DIR$/../../Trabalho_04/main.c" afterPath="$PROJECT_DIR$/../../Trabalho_04/main.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -166,7 +73,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>

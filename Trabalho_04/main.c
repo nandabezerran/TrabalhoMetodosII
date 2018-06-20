@@ -1,7 +1,6 @@
 //Fernanda Bezerra Nascimento - 388834
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 /// Define a função que iremos utilizar para o método
 /// \param x
@@ -121,6 +120,13 @@ double RangeKutta(double initialPosition, double initialTime, double wantedTime,
 
 }
 
+/// Calcula a solução de uma equação diferencial ordinaria pelos metodos do preditor corretor
+/// \param initialPosition
+/// \param initialTime
+/// \param wantedTime
+/// \param step
+/// \param order
+/// \return solução da equação
 double PredictorCorrectorMethod(double initialPosition, double initialTime, double wantedTime,
                                    double step, int order){
     double        nextPosition;
@@ -214,8 +220,8 @@ double PredictorCorrectorMethod(double initialPosition, double initialTime, doub
 int main() {
     double initialPosition = 1;
     double      intialTime = 0;
-    double            step = 0.01;
-    double      wantedTime = 0.13;
+    double            step = 0.1;
+    double      wantedTime = 2.4;
 
     int           rangeKuttaOrder;
     int   predictorCorrectorOrder;

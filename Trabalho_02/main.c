@@ -29,14 +29,12 @@ int main(){
     double  gFunctionDerivative;
 
     int alfa = 2;
-    gFunctionDerivative = (functionPoint1 - functionPoint0) + 0.5*(functionPoint2 - 2 * functionPoint1 + functionPoint0)
+    gFunctionDerivative = (1.0/deltaX)*((functionPoint1 - functionPoint0) + 0.5*(functionPoint2 - 2 * functionPoint1 + functionPoint0)
                            *(2 * alfa - 1) + (1/6)*(functionPoint3 - 3 * functionPoint2
                                                     + 3 * functionPoint1 - functionPoint0)
                                              *(3*pow(alfa,2) - 6 * alfa + 2) + (1/24)*(functionPoint4
                                               - 4 * functionPoint3+ 6 * functionPoint2 - 4 * functionPoint1
-                                              + functionPoint0) * (4 * pow(alfa, 3)
-                                                                                                                                               - 18 * pow(alfa, 2)
-                                                                                                                                               + 22 * alfa - 6 );
+                                              + functionPoint0) * (4 * pow(alfa, 3)- 18 * pow(alfa, 2)+ 22 * alfa - 6 ));
     printf("Resultado da derivada de cos(xy) em relacao a x: %f\n", gFunctionDerivative);
     system("pause");
     return 0;
